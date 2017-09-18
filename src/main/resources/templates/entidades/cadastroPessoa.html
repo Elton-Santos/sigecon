@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/layoutPadrao">
+
+<section layout:fragment="conteudo">
+	<div class="container">
+		<div class="section">
+			<div id="box-cadastro">
+				<div class="row element-position">
+					<div class="col s12 m10 offset-m1 element-position box-steps">
+					
+					
+							<h4>Cadastro Pessoa Física </h4>
+										
+										
+						<ul class="collapsible z-depth-4" data-collapsible="accordion">
+							<li id="cadastro-step1">
+								<div class="collapsible-header register-style active">
+									<i class="mdi mdi-information-outline blue-text"></i> <span
+										class="steps-title"><strong>Dados Pessoais</strong></span>
+								</div>
+								<div class="collapsible-body register-style white">
+
+									<form th:object="${listaPessoas}"
+										th:action="@{/entidades/save}" method="POST"
+										style="margin: 10px">
+										<input type="hidden" th:field="*{idPessoa}"/>
+
+										<div>
+											<div th:if="${#fields.hasAnyErrors()}">
+												<div th:each="detailedError : ${#fields.detailedErrors()}">
+													<span th:text="${detailedError.message}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+													<i class="material-icons prefix">account_circle</i> <input
+														th:field="*{nome}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix"
+														data-error="Email Inválido">Nome Completo</label>
+												</div>
+											</div>
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('tipoPessoa')}? 'has-error'">
+													<i class="material-icons prefix">accessibility</i> <select
+														th:field="*{tipoPessoa}">
+														<option
+															th:each="tipoPessoa : ${T(br.com.sigecon.enuns.TipoPessoa).values()}"
+															th:value="${tipoPessoa}"
+															th:text="${tipoPessoa.descricao}"></option>
+													</select> <label>Tipo</label>
+												</div>
+
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
+													<i class="material-icons prefix">person_outline</i> <input
+														th:field="*{cpf}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix">CPF</label>
+												</div>
+											</div>
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('rg')}? 'has-error'">
+													<i class="material-icons prefix">person_outline</i> <input
+														th:field="*{rg}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix">RG</label>
+												</div>
+											</div>
+
+
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('dataNascimento')}? 'has-error'">
+													<i class="material-icons prefix">perm_contact_calendar</i>
+													<input th:field="*{dataNascimento}" type="text"
+														class="datepicker" /> <label for="icon_prefix">Data
+														de Nascimento</label>
+												</div>
+											</div>
+
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('sexo')}? 'has-error'">
+													<i class="material-icons prefix">wc</i> <select
+														th:field="*{sexo}">
+														<option value=""></option>
+														<option value="Masculino">Masculino</option>
+														<option value="Feminino">Feminido</option>
+													</select> <label>Sexo</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="">
+											<button type="submit"
+												class="waves-effect waves-dark btn blue">CONFIRMAR
+											</button>
+										</div>
+									</form>
+								</div>
+							</li>
+							<!-- CONTATO -->
+							<li id="cadastro-step2">
+								<div class="collapsible-header register-style">
+									<i class="mdi mdi-close-circle-outline red-text"></i> <span
+										class="steps-title"><strong>Contato</strong></span>
+								</div>
+								<div class="collapsible-body register-style white">
+
+									<form th:object="${listaPessoas}"
+										th:action="@{/entidades/save}" method="POST"
+										style="margin: 10px">
+
+										<div>
+											<div th:if="${#fields.hasAnyErrors()}">
+												<div th:each="detailedError : ${#fields.detailedErrors()}">
+													<span th:text="${detailedError.message}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('contato.telefone')}? 'has-error'">
+													<i class="material-icons prefix">local_phone</i> <input
+														th:field="*{contato.telefone}" id="icon_prefix"
+														type="text" class="validate" /> <label for="icon_prefix">Telefone</label>
+												</div>
+											</div>
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('contato.email')}? 'has-error'">
+													<i class="material-icons prefix">email</i> <input
+														th:field="*{contato.email}" id="icon_prefix" type="email"
+														class="validate" /> <label class="validate" for="email"
+														data-error="Email Inválido" data-success="Email válido">Email</label>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('contato.celular')}? 'has-error'">
+													<i class="material-icons prefix">smartphone</i> <input
+														th:field="*{contato.celular}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix">Celular</label>
+												</div>
+											</div>
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('contato.celularAlt')}? 'has-error'">
+													<i class="material-icons prefix">smartphone</i> <input
+														th:field="*{contato.celularAlt}" id="icon_prefix"
+														type="text" class="validate" /> <label for="icon_prefix">Celular
+														Alternativo</label>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="">
+											<button type="submit"
+												class="waves-effect waves-dark btn blue">CONFIRMAR
+											</button>
+										</div>
+									</form>
+								</div>
+							</li>
+							<!-- ENDEREÇO -->
+							<li id="cadastro-step3">
+								<div class="collapsible-header register-style">
+									<i class="mdi mdi-check-circle-outline green-text"></i> <span
+										class="steps-title"><strong>Endereço</strong></span>
+								</div>
+								<div class="collapsible-body register-style white">
+
+									<form th:object="${listaPessoas}"
+										th:action="@{/entidades/save}" method="POST"
+										style="margin: 10px">
+										<div>
+											<div th:if="${#fields.hasAnyErrors()}">
+												<div th:each="detailedError : ${#fields.detailedErrors()}">
+													<span th:text="${detailedError.message}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.logradouro')}? 'has-error'">
+													<i class="material-icons prefix">map</i> <input
+														th:field="*{endereco.logradouro}" id="icon_prefix"
+														type="text" class="validate" /> <label for="icon_prefix">Logradouro</label>
+												</div>
+											</div>
+											<div class="input-field col s3">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.numero')}? 'has-error'">
+													<i class="material-icons prefix">location_on</i> <input
+														th:field="*{endereco.numero}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix">Número</label>
+												</div>
+											</div>
+											<div class="input-field col s3">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.complemento')}? 'has-error'">
+													<i class="material-icons prefix">short_text</i> <input
+														th:field="*{endereco.complemento}" id="icon_prefix"
+														type="text" class="validate" /> <label for="icon_prefix">Complemento</label>
+												</div>
+											</div>
+
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.cep')}? 'has-error'">
+													<i class="material-icons prefix">map</i> <input
+														th:field="*{endereco.cep}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix">CEP</label>
+												</div>
+											</div>
+											<div class="input-field col s6">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.bairro')}? 'has-error'">
+													<i class="material-icons prefix">location_city</i> <input
+														th:field="*{endereco.bairro}" id="icon_prefix" type="text"
+														class="validate" /> <label for="icon_prefix">Bairro</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="input-field col s5">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.cidade')}? 'has-error'">
+													<i class="material-icons prefix">location_city</i> <select>
+														<option>São Paulo</option>
+													</select> <label>Estado</label>
+												</div>
+
+
+											</div>
+											<div class="input-field col s5">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.estado')}? 'has-error'">
+													<i class="material-icons prefix">location_city</i> <select>
+														<option>São Paulo</option>
+													</select> <label>Cidade</label>
+												</div>
+
+
+											</div>
+											<div class="input-field col s2">
+												<div
+													th:classappend="${#fields.hasErrors('endereco.uf')}? 'has-error'">
+													<i class="material-icons prefix">location_city</i> <select>
+														<option> SP</option>
+													</select> <label>UF</label>
+												</div>
+
+
+											</div>
+										</div>
+
+
+										<div class="">
+											<button type="submit"
+												class="waves-effect waves-dark btn blue">CONFIRMAR</button>
+										</div>
+									</form>
+
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</html>
