@@ -20,18 +20,13 @@
 				</a>
 				<ul class="right hide-on-med-and-down">
 					<li><a th:href="@{/entidades}">Condôminos</a></li>
-					<li><a th:href="@{/}">Títulos</a></li>
-					<li><a
-							class="dropdown-button"
-							href="#!"
-							data-activates="dropdown1">
-							Cadastros<i class="material-icons right">arrow_drop_down</i>
-						</a>
+					<li><a th:href="@{/titulo}">Títulos</a></li>
+					<li><a class="dropdown-button" href="#!" data-activates="dropdown1"> Cadastros </a>
 						<ul
 							id='dropdown1'
 							class='dropdown-content'>
 							<li><a th:href="@{entidades/add}">Pessoa</a></li>
-							<li><a href="#">Títulos</a></li>
+							<li><a th:href="@{titulos/add}">Títulos</a></li>
 						</ul></li>
 				</ul>
 				<ul
@@ -39,17 +34,11 @@
 					class="side-nav">
 					<li><a href="#">Pessoa</a></li>
 					<li><a href="#">Títulos</a></li>
-					<li><a
-							class="dropdown-button"
-							href="#!"
-							data-activates="dropdown2">
+					<li><a class="dropdown-button" href="#!" data-activates="dropdown2">
 							Cadastros<i class="material-icons right">arrow_drop_down</i>
 						</a></li>
 				</ul>
-				<a
-					href="#"
-					data-activates="slide-out"
-					class="button-collapse">
+				<a href="#" data-activates="slide-out" class="button-collapse">
 					<i class="material-icons">menu</i>
 				</a>
 			</div>

@@ -29,12 +29,12 @@ public class PessoaFisicaService {
 	public PessoaFisica save(PessoaFisica pessoaFisica) {
 		return repository.save(pessoaFisica);
 	}
+	//
+	// public void delete(Long id) {
+	// repository.delete(id);
+	// }
 
-	public void delete(Long id) {
-		repository.delete(id);
-	}
-
-	public void remover(Long codigo) {
+	public void delete(Long codigo) {
 		repository.delete(codigo);
 	}
 }

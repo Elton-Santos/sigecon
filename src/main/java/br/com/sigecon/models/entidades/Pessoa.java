@@ -3,11 +3,11 @@ package br.com.sigecon.models.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,10 +15,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.sigecon.enuns.TipoPessoa;
@@ -33,18 +33,17 @@ public class Pessoa implements Serializable {
 	@Column(name = "idpessoa")
 	private Long idPessoa;
 
-	@NotBlank
 	@Column
 	private String nome;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idEndereco")
 	private Endereco endereco;
 
 	@Enumerated(EnumType.STRING)
 	private TipoPessoa tipoPessoa;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "id_contato")
 	private Contato contato;
 
@@ -66,6 +65,22 @@ public class Pessoa implements Serializable {
 
 	@Column
 	private boolean ativo = true;
+
+	public Pessoa() {
+
+	}
+
+	public Pessoa(Long idPessoa, String nome, Endereco endereco, TipoPessoa tipoPessoa, Contato contato, String sexo,
+			Date dataCadastro, boolean ativo) {
+		this.idPessoa = idPessoa;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.tipoPessoa = tipoPessoa;
+		this.contato = contato;
+		this.sexo = sexo;
+		this.dataCadastro = dataCadastro;
+		this.ativo = ativo;
+	}
 
 	public Long getIdPessoa() {
 		return idPessoa;

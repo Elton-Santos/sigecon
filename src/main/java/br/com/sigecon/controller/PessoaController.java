@@ -25,19 +25,24 @@ public class PessoaController {
 	@Autowired
 	private PessoaFisicaRepository repository;
 
+	private static final String INDEX = "/entidades/listaPessoaFisica";
+
 	@RequestMapping("/")
 	public ModelAndView findAll() {
-		ModelAndView view = new ModelAndView("entidades/listaPessoaFisica");
+		ModelAndView view = new ModelAndView(INDEX);
 		view.addObject("PessoaFisica", new PessoaFisica());
 		view.addObject("listaPessoas", service.findAll());
 		return view;
 	}
 
-	@GetMapping("/add")
+	@RequestMapping("/add")
 	public ModelAndView add(PessoaFisica pessoaFisica) {
-		ModelAndView view = new ModelAndView("entidades/cadastroPessoa");
+		ModelAndView view = new ModelAndView("/entidades/cadastroPessoa");
+
 		view.addObject("listaPessoas", pessoaFisica);
+
 		return view;
+
 	}
 
 	@GetMapping("/edit/{id}")
@@ -45,32 +50,35 @@ public class PessoaController {
 		return add(service.findOne(id));
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable("id") Long id) {
-		service.delete(id);
-		return "redirect:/entidades";
-	}
+	// @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	// public String delete(@PathVariable("id") Long id) {
+	// service.delete(id);
+	// return "redirect:/entidades";
+	// }
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result) {
 
-		if (result.hasErrors()) {
+		try {
+			service.save(pessoaFisica);
+			return findAll();
+
+		} catch (Exception ex) {
+			System.out.println(ex);
 			return add(pessoaFisica);
 		}
-		service.save(pessoaFisica);
-		return findAll();
 	}
 
 	@RequestMapping
 	public ModelAndView pesquisar(PessoaFisica pessoaFisica) {
-		ModelAndView view = new ModelAndView("entidades/listaPessoaFisica");
+		ModelAndView view = new ModelAndView(INDEX);
 		view.addObject("listaPessoas", repository.porNome(pessoaFisica.getNome()));
 		return view;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable("id") Long id) {
-		service.remover(id);
+		service.delete(id);
 		return "redirect:/entidades";
 	}
 }

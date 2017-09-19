@@ -6,7 +6,6 @@
 	layout:decorator="/layout/layoutPadrao">
 <head>
 <title>Pesquisa Pessoas</title>
-
 </head>
 <body>
 	<section layout:fragment="conteudo">
@@ -55,6 +54,7 @@
 										<th>RG</th>
 										<th>Sexo</th>
 										<th>Data de Nascimento</th>
+										<th>Situação</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -66,15 +66,17 @@
 										<td th:text="${pessoaFisica.rg}"></td>
 										<td th:text="${pessoaFisica.sexo}"></td>
 										<td th:text="${pessoaFisica.dataNascimento}"></td>
+										<td th:text="${pessoaFisica.ativo}"></td>
 										<td>
 											<div>
+											
 												<a
 													th:href="@{/entidades/edit/{id}(id=${pessoaFisica.idPessoa})}">
 													<i class="material-icons prefix">edit</i>
 												</a>
 												<a class="tooltipped  waves-light modal-trigger js-remover-entidade-btn" data-position="top" 
 													href="#modal-remover-entidade" 
-													th:attr="data-codigo=${pessoaFisica.idPessoa}, data-nome=${pessoaFisica.nome}"
+													th:attr="data-idPessoa=${pessoaFisica.idPessoa}, data-nome=${pessoaFisica.nome}"
 													data-delay="50" data-tooltip="Apagar">
  														<i class="material-icons prefix">delete</i>
 												</a>
@@ -93,29 +95,30 @@
 			</div>
 		</div>
 		<!-- Modal Estrutura -->
-    <div id="modal-remover-entidade" class="modal">
-        <div class="modal-content">
-            <h4>Exclusão de entidade</h4>
-            <span>Tem certeza que deseja remover a entidade ? </span>
-        </div>
-        <div class="modal-footer">
-            <form th:attr="data-url-remover=@{/entidades}" method="post">
+	    <div id="modal-remover-entidade" class="modal">
+	        <div class="modal-content">
+	            <h4>Exclusão de Pessoas</h4>
+	            <span>Tem certeza que deseja remover a entidade ? </span>
+	        </div>
+	        <div class="modal-footer">
+	            <form th:attr="data-url-remover=@{/entidades}" method="post">
+	
+	                <input type="hidden" name="_method" value="DELETE"/>
+	
+	                <button type="submit"
+	                        class="modal-action modal-close waves-effect waves-light btn red darken-1"
+	                        style="margin: 6px">Sim</button>
+	
+	                <a href="#!" class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+	            </form>
+	        </div>
+	    </div>
 
-                <input type="hidden" name="_method" value="DELETE"/>
-
-                <button type="submit"
-                        class="modal-action modal-close waves-effect waves-light btn red darken-1"
-                        style="margin: 6px">Sim</button>
-
-                <a href="#!" class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
-            </form>
-        </div>
-    </div>
 
   
 	</section>
 <th:block layout:fragment="javascript-extra">
-    <script th:src="@{/financeiro.js}"></script>
+    <script th:src="@{../financeiro.js}"></script>
 </th:block>
 </body>
 </html>

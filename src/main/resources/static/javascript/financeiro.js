@@ -16,7 +16,7 @@ Financeiro.DialogoDeRemocao = (function() {
 	function onModalShow(evento) {
 		evento.preventDefault();
 		var botao = $(evento.currentTarget);
-		var codigo = botao.data('idPessoa');
+		var idPessoa = botao.data('idPessoa');
 		var nome = botao.data('nome');
 
 		var form = this.modal.find('form');
@@ -25,7 +25,7 @@ Financeiro.DialogoDeRemocao = (function() {
 			action += '/';
 		}
 
-		form.attr('action', action + codigo);
+		form.attr('action', action + idPessoa);
 
 		this.modal.find('.modal-content span').html(
 				'Tem certeza que deseja remover <strong> ' + nome
