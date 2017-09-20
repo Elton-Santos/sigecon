@@ -16,7 +16,7 @@ Financeiro.DialogoDeRemocao = (function() {
 	function onModalShow(evento) {
 		evento.preventDefault();
 		var botao = $(evento.currentTarget);
-		var idPessoa = botao.data('idPessoa');
+		var idPessoa = botao.data('id');
 		var nome = botao.data('nome');
 
 		var form = this.modal.find('form');

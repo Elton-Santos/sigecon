@@ -38,7 +38,6 @@ public class PessoaController {
 	@RequestMapping("/add")
 	public ModelAndView add(PessoaFisica pessoaFisica) {
 		ModelAndView view = new ModelAndView("/entidades/cadastroPessoa");
-
 		view.addObject("listaPessoas", pessoaFisica);
 
 		return view;
@@ -49,12 +48,6 @@ public class PessoaController {
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		return add(service.findOne(id));
 	}
-
-	// @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	// public String delete(@PathVariable("id") Long id) {
-	// service.delete(id);
-	// return "redirect:/entidades";
-	// }
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result) {
@@ -72,7 +65,15 @@ public class PessoaController {
 	@RequestMapping
 	public ModelAndView pesquisar(PessoaFisica pessoaFisica) {
 		ModelAndView view = new ModelAndView(INDEX);
-		view.addObject("listaPessoas", repository.porNome(pessoaFisica.getNome()));
+		if (pessoaFisica.getNome() == "" && pessoaFisica.getCpf() == "") {
+			view.addObject("listaPessoas", service.findAll());
+		} else if (pessoaFisica.getNome() == "") {
+			view.addObject("listaPessoas", repository.findByCpf((pessoaFisica.getCpf())));
+		} else if (pessoaFisica.getCpf() == "") {
+			view.addObject("listaPessoas", repository.porNome(pessoaFisica.getNome()));
+		} else {
+			view.addObject("listaPessoas", service.findAll());
+		}
 		return view;
 	}
 

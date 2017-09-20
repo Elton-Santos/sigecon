@@ -31,7 +31,19 @@
 													th:field="*{nome}" /> <label for="icon_prefix">Informe
 													o nome</label>
 											</div>
+											<div class="input-field col m12 s12 l6">
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix"
+													type="text"
+													class="validate"
+													th:field="*{cpf}" /> <label for="icon_prefix">Informe
+													o CPF</label>
+											</div>
 										</div>
+										<button
+											type="submit"
+											class="waves-effect waves-dark btn blue atual_page">CONFIRMAR
+										</button>
 									</form>
 								</div>
 							</div>
@@ -66,24 +78,39 @@
 										<td th:text="${pessoaFisica.rg}"></td>
 										<td th:text="${pessoaFisica.sexo}"></td>
 										<td th:text="${pessoaFisica.dataNascimento}"></td>
-										<td th:text="${pessoaFisica.ativo}"></td>
+										<td>
+											<form
+												method="POST"
+												th:action="@{/entidades/edit/{id}(id=${pessoaFisica.idPessoa})}"
+												th:object="${pessoaFisica}">
+												<input
+													type="checkbox"
+													th:id="'check' + ${pessoaFisica.idPessoa}"
+													th:checked="${pessoaFisica.ativo}"
+													name="features"
+													th:value="${pessoaFisica.ativo}"></input> <label
+													for="check">Yellow</label 	
+											</form>
+										</td>
 										<td>
 											<div>
-											
 												<a
 													th:href="@{/entidades/edit/{id}(id=${pessoaFisica.idPessoa})}">
 													<i class="material-icons prefix">edit</i>
 												</a>
-												<a class="tooltipped  waves-light modal-trigger js-remover-entidade-btn" data-position="top" 
-													href="#modal-remover-entidade" 
-													th:attr="data-idPessoa=${pessoaFisica.idPessoa}, data-nome=${pessoaFisica.nome}"
-													data-delay="50" data-tooltip="Apagar">
- 														<i class="material-icons prefix">delete</i>
+												<a
+													class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+													data-position="top"
+													href="#modal-remover-entidade"
+													th:attr="data-id=${pessoaFisica.idPessoa}, data-nome=${pessoaFisica.nome}"
+													data-delay="50"
+													data-tooltip="Apagar">
+													<i class="material-icons prefix">delete</i>
 												</a>
-<!-- 												<a -->
-<!-- 													th:href="@{/entidades/delete/{id}(id=${pessoaFisica.idPessoa})}"> -->
-<!-- 													<i class="material-icons prefix">delete</i> -->
-<!-- 												</a> -->
+												<!-- 												<a -->
+												<!-- 													th:href="@{/entidades/delete/{id}(id=${pessoaFisica.idPessoa})}"> -->
+												<!-- 													<i class="material-icons prefix">delete</i> -->
+												<!-- 												</a> -->
 											</div>
 										</td>
 									</tr>
@@ -95,30 +122,34 @@
 			</div>
 		</div>
 		<!-- Modal Estrutura -->
-	    <div id="modal-remover-entidade" class="modal">
-	        <div class="modal-content">
-	            <h4>Exclusão de Pessoas</h4>
-	            <span>Tem certeza que deseja remover a entidade ? </span>
-	        </div>
-	        <div class="modal-footer">
-	            <form th:attr="data-url-remover=@{/entidades}" method="post">
-	
-	                <input type="hidden" name="_method" value="DELETE"/>
-	
-	                <button type="submit"
-	                        class="modal-action modal-close waves-effect waves-light btn red darken-1"
-	                        style="margin: 6px">Sim</button>
-	
-	                <a href="#!" class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
-	            </form>
-	        </div>
-	    </div>
-
-
-  
+		<div
+			id="modal-remover-entidade"
+			class="modal">
+			<div class="modal-content">
+				<h4>Exclusão de Pessoas</h4>
+				<span>Tem certeza que deseja remover a entidade ? </span>
+			</div>
+			<div class="modal-footer">
+				<form
+					th:attr="data-url-remover=@{/entidades}"
+					method="post">
+					<input
+						type="hidden"
+						name="_method"
+						value="DELETE" />
+					<button
+						type="submit"
+						class="modal-action modal-close waves-effect waves-light btn red darken-1"
+						style="margin: 6px">Sim</button>
+					<a
+						href="#!"
+						class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+				</form>
+			</div>
+		</div>
 	</section>
-<th:block layout:fragment="javascript-extra">
-    <script th:src="@{../financeiro.js}"></script>
-</th:block>
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{../financeiro.js}"></script>
+	</th:block>
 </body>
 </html>

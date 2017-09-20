@@ -28,7 +28,7 @@
 										class="steps-title"><strong>Dados Pessoais</strong></span>
 								</div>
 								<div class="collapsible-body register-style white">
-									<form
+									<form class="form"
 										th:object="${listaPessoas}"
 										th:action="@{/entidades/save}"
 										method="POST"
@@ -116,7 +116,7 @@
 										<div class="">
 											<button
 												type="submit"
-												class="waves-effect waves-dark btn blue">CONFIRMAR
+												class="waves-effect waves-dark btn blue atual_page">CONFIRMAR
 											</button>
 										</div>
 									</form>
@@ -129,7 +129,7 @@
 										class="steps-title"><strong>Contato</strong></span>
 								</div>
 								<div class="collapsible-body register-style white">
-									<form
+									<form class="form"
 										th:object="${listaPessoas}"
 										th:action="@{/entidades/save}"
 										method="POST"
@@ -197,7 +197,7 @@
 											</button>
 											<button
 												type="button"
-												class="waves-effect waves-dark btn-flat"
+												class="waves-effect waves-dark btn-flat next_page"
 												onclick="$('.collapsible').collapsible('open', 0);">VOLTAR</button>
 										</div>
 									</form>
@@ -210,7 +210,7 @@
 										class="steps-title"><strong>Endereço</strong></span>
 								</div>
 								<div class="collapsible-body register-style white">
-									<form
+									<form class="form"
 										th:object="${listaPessoas}"
 										th:action="@{/entidades/save}"
 										method="POST"
@@ -305,7 +305,7 @@
 										<div class="">
 											<button
 												type="submit"
-												class="waves-effect waves-dark btn blue">CONFIRMAR</button>
+												class="waves-effect waves-dark btn blue prev_page">CONFIRMAR</button>
 											<button
 												type="button"
 												class="waves-effect waves-dark btn-flat"

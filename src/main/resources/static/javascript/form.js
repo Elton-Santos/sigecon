@@ -1,11 +1,12 @@
 $(function){
 	var atual_page, next_page, prev_page;
-	$('.next').click(function(){
+	
+	$('.next').click(function){
 		atual_fs = $(this).parent();
-		next_page
+		next_page = $(this).parent().next(); 
 	})
 	
-	$('#form').click(function(){
+	$('#form input[type=submit]').click(function){
 		return false;
-	})
-}
+	}
+});
