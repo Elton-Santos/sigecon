@@ -22,6 +22,7 @@ public class PessoaFisica extends Pessoa {
 	@Column(name = "cpf")
 	private String cpf;
 
+	@NotBlank
 	@Column(name = "rg")
 	private String rg;
 

@@ -36,15 +36,13 @@ public class PessoaController {
 		return view;
 	}
 
-	@RequestMapping("/add")
+	@RequestMapping(value = "/add")
 	public ModelAndView add(PessoaFisica pessoaFisica) {
 		ModelAndView view = new ModelAndView("/entidades/cadastroPessoa");
-		view.addObject("listaPessoas", pessoaFisica);
-
 		return view;
 	}
 
-	@GetMapping("/edit/{id}")
+	@GetMapping(value = "/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		return add(service.findOne(id));
 	}
