@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sigecon.models.entidades.PessoaFisica;
 import br.com.sigecon.repositoty.PessoaFisicaRepository;
@@ -41,7 +42,6 @@ public class PessoaController {
 		view.addObject("listaPessoas", pessoaFisica);
 
 		return view;
-
 	}
 
 	@GetMapping("/edit/{id}")
@@ -50,16 +50,15 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result) {
-
-		try {
-			service.save(pessoaFisica);
-			return findAll();
-
-		} catch (Exception ex) {
-			System.out.println(ex);
+	public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result, RedirectAttributes attributes) {
+		ModelAndView view = new ModelAndView("redirect:/entidades/add");
+		if (result.hasErrors()) {
 			return add(pessoaFisica);
 		}
+		attributes.addFlashAttribute("mensagem", "Cadastro realizado com sucesso!");
+		service.save(pessoaFisica);
+		return view;
+
 	}
 
 	@RequestMapping

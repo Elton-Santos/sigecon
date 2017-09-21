@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="navbar-fixed">
+		<nav
+			class="#64b5f6 blue lighten-2"
+			role="navigation"
+			th:fragment="cabecalho">
+			<div class="nav-wrapper container">
+				<a
+					id="logo-container"
+					class="brand-logo">
+					<img
+						th:src="@{/images/logo_p.png}"
+						src="../images/taiwan_Bicycle_Ride_hd_wallpaper_8.jpg"
+						class="img-responsive"
+						alt="Responsive image" />
+				</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a th:href="@{/entidades}">Condôminos</a></li>
+					<li><a th:href="@{/titulo}">Títulos</a></li>
+					<li><a class="dropdown-button" href="#!" data-activates="dropdown1"> Cadastros </a>
+						<ul
+							id='dropdown1'
+							class='dropdown-content'>
+							<li><a th:href="@{entidades/add}">Pessoa</a></li>
+							<li><a th:href="@{titulos/add}">Títulos</a></li>
+						</ul></li>
+				</ul>
+				<ul
+					id="slide-out"
+					class="side-nav">
+					<li><a href="#">Pessoa</a></li>
+					<li><a href="#">Títulos</a></li>
+					<li><a class="dropdown-button" href="#!" data-activates="dropdown2">
+							Cadastros<i class="material-icons right">arrow_drop_down</i>
+						</a></li>
+				</ul>
+				<a href="#" data-activates="slide-out" class="button-collapse">
+					<i class="material-icons">menu</i>
+				</a>
+			</div>
+		</nav>
+		<ul
+			id='dropdown2'
+			class="dropdown-content">
+			<li>
+				<ul>
+					<li><a href="#">Pessoa </a></li>
+					<li><a href="#">Títulos</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

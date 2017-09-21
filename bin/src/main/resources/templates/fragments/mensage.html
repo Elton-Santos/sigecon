@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div
+	id="info"
+	class="alert card-panel deep-purple darken-4 white-text"
+	th:text="${menage}"
+	th:if="${!#string.isEmpty(mensage)}">Success</div>
+</html>

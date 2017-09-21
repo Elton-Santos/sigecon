@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.sigecon.enuns.TipoPessoa;
@@ -33,6 +34,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "idpessoa")
 	private Long idPessoa;
 
+	@NotBlank
 	@Column
 	private String nome;
 
@@ -60,7 +62,7 @@ public class Pessoa implements Serializable {
 
 	// @Column(nullable = false)
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date dataCadastro;
 
 	@Column

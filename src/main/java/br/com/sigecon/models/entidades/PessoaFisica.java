@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -17,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class PessoaFisica extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
+	@NotBlank
 	@Column(name = "cpf")
 	private String cpf;
 
