@@ -1,0 +1,105 @@
+body {
+	padding-left: 300px;
+}
+
+.nav.home {
+	backgroud: white;
+}
+
+.card-span{
+	margin-left: 2%;
+}
+
+h5 {
+	color: #607d8b;
+}
+
+body {
+	backgroud: white;
+}
+
+@media only screen and (max-width: 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}
+
+#credits li, #credits li a {
+	color: white;
+}
+
+#credits li a {
+	font-weight: bold;
+}
+
+.footer-copyright .container, .footer-copyright .container a {
+	color: #BCC2E2;
+}
+
+.fab-tip {
+	position: fixed;
+	right: 85px;
+	padding: 0px 0.5rem;
+	text-align: right;
+	background-color: #323232;
+	border-radius: 2px;
+	color: #FFF;
+	width: auto;
+}
+
+.menu-lateral {
+	width: 250px;
+}
+
+.breadcrumb-barra {
+  position: relative;
+  height: 25px;
+  margin: 0.5rem 0 1rem 0;
+  -webkit-transition: -webkit-box-shadow .25s;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: 2px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  vertical-align: middle;
+  color: #838B83;
+}
+
+.breadcrumb i,
+.breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
+.breadcrumb i.material-icons {
+  display: inline-block;
+  float: left;
+  font-size: 14px;
+}
+
+.breadcrumb:before {
+  content: '\E5CC';
+  color: #3A5FCD;
+  vertical-align: top;
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14px;
+  margin: 0 10px 0 8px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.breadcrumb:first-child:before {
+  display: none;
+}
+
+.breadcrumb:last-child {
+  color: #104E8B;
+}
+
+.titulo-pagina {
+  width: 100%;
+  margin-left: 10px;
+  left: auto;
+}
+  right: auto;

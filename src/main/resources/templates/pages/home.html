@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/index">
+<link
+	rel="icon"
+	th:href="@{/images/favicon.png}" />
+<link
+	rel="stylesheet"
+	th:href="@{/style/estilo.css}" />
+<body>
+	<section layout:fragment="conteudo">
+	
+	<div class="row">
+		<div class="col s12	 m12">
+			<div class="left card-title grey-text text-darken-1">
+				<h5>Painel de Controle</h5>
+			</div>
+		</div>
+	</div>
+		
+		<div class="row">
+			<a th:href="@{/fisica}">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title">Lista Física</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+			<a href="#!">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title	">Lista Jurídica</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+			<a href="#!">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title">Administrativo</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+			<a href="#!">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title">Boleto</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="row">
+			<a th:href="@{/entidades}">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title">Lista</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+			<a href="#!">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title	">Assembleia</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+			<a href="#!">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title">Administrativo</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+			<a href="#!">
+				<div class="col s6 m3">
+					<div class="card hoverable">
+						<div class="card-content grey-text text-darken-1">
+							<span class="card-title">Boleto</span>
+							<hr />
+							<br />
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</section>
+</body>
+</html>

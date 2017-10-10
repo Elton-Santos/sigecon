@@ -1,266 +1,209 @@
 <!DOCTYPE html>
-<html
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="/layout/layoutPadrao">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/layout/index">
 <head>
-<title
-	th:text="${id == null ? 'Cadastro de Pessoa Física' : 'Edição de Pessoa'}">
-</title>
+<title th:text="${id == null ? 'Cadastro de Pessoa Física' : 'Edição de Pessoa'}"></title>
 </head>
 <section layout:fragment="conteudo">
-	<div class="container">
-		<div class="section">
-			<div class="col-sm-4 text-left">
-				<h5
-					th:text="${id == null ? 'Cadastro de Pessoa Física' : 'Edição de Pessoa'}"></h5>
+
+	<!-- DADOS PESSOAIS -->
+	<form class="coll s12" method="POST" th:action="@{/fisica/novo}" th:object="${pessoaFisica}">
+		<input type="hidden" th:field="*{idPessoa}" />
+
+		<div class="row">
+			<div class="titulo-pagina">
+				<h5 th:text="${id == null ? 'Cadastro de Pessoa Física' : 'Edição de Pessoa'}"></h5>
+			
 			</div>
-			<div class="row">
-				<div class="col s12 m12">
-					<div class="card hoverable">
-						<div class="card-content black-text">
-							<div class="row">
-								<form class="form" th:action="@{/entidades/save}" th:object="${listaPessoas}"
-									method="POST" style="margin: 10px">
-									
-									<div class="row">
-										<div class="col s12 m15">
-											<div class="#f5f5f5 grey lighten-4">
-												<div class="card-content brack-text">
-													<span class="card-title">Dados Pessoais</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s6">
-												<i class="material-icons prefix">account_circle</i> 
-												
-												<input id="nome" type="text" class="validate" name="nome" 
-													th:classappend="${#fields.hasErrors('nome')} ? invalid" />
-													
-												<label for="nome" data-error="O nome é obrigatório">Nome Completo</label>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('tipoPessoa')}? 'has-error'">
-												<i class="material-icons prefix">accessibility</i> <select
-													th:field="*{tipoPessoa}">
-													<option
-														th:each="tipoPessoa : ${T(br.com.sigecon.enuns.TipoPessoa).values()}"
-														th:value="${tipoPessoa}"
-														th:text="${tipoPessoa.descricao}"></option>
-												</select> <label>Tipo</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
-												<i class="material-icons prefix">person_outline</i> <input
-													th:field="*{cpf}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">CPF</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div th:classappend="${#fields.hasErrors('rg')}? 'has-error'">
-												<i class="material-icons prefix">person_outline</i> <input
-													th:field="*{rg}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">RG</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('dataNascimento')}? 'has-error'">
-												<i class="material-icons prefix">perm_contact_calendar</i> <input
-													th:field="*{dataNascimento}"
-													type="text"
-													class="datepicker" /> <label for="icon_prefix">Data
-													de Nascimento</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('sexo')}? 'has-error'">
-												<i class="material-icons prefix">wc</i> <select
-													th:field="*{sexo}">
-													<option value=""></option>
-													<option value="Masculino">Masculino</option>
-													<option value="Feminino">Feminido</option>
-												</select> <label>Sexo</label>
-											</div>
-										</div>
-									</div>
-									
-									<!-- CONTATO -->
-									<div class="row">
-									<div class="row">
-										<div class="col s12 m15">
-											<div class="#f5f5f5 grey lighten-4">
-												<div class="card-content brack-text">
-													<span class="">Contato</span>
-												</div>
-											</div>
-										</div>
-									</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('contato.telefone')}? 'has-error'">
-												<i class="material-icons prefix">local_phone</i> <input
-													th:field="*{contato.telefone}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Telefone</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('contato.email')}? 'has-error'">
-												<i class="material-icons prefix">email</i> 
-												<input th:field="*{contato.email}"
-													id="icon_prefix" type="email" class="validate" /> 
-													
-												<label class="validate" for="email" 
-												data-error="Email Inválido" data-success="Email válido">Email</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('contato.celular')}? 'has-error'">
-												<i class="material-icons prefix">smartphone</i> <input
-													th:field="*{contato.celular}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Celular</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('contato.celularAlt')}? 'has-error'">
-												<i class="material-icons prefix">smartphone</i> <input
-													th:field="*{contato.celularAlt}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Celular
-													Alternativo</label>
-											</div>
-										</div>
-									</div>
-									<!-- ENDEREÇO -->
-									<div class="row">
-									<div class="row">
-										<div class="col s12 m15">
-											<div class="#f5f5f5 grey lighten-4">
-												<div class="card-content brack-text">
-													<span class="">Endereço	</span>
-												</div>
-											</div>
-										</div>
-									</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.logradouro')}? 'has-error'">
-												<i class="material-icons prefix">map</i> <input
-													th:field="*{endereco.logradouro}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Logradouro</label>
-											</div>
-										</div>
-										<div class="input-field col s3">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.numero')}? 'has-error'">
-												<i class="material-icons prefix">location_on</i> <input
-													th:field="*{endereco.numero}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Número</label>
-											</div>
-										</div>
-										<div class="input-field col s3">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.complemento')}? 'has-error'">
-												<i class="material-icons prefix">short_text</i> <input
-													th:field="*{endereco.complemento}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Complemento</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.cep')}? 'has-error'">
-												<i class="material-icons prefix">map</i> <input
-													th:field="*{endereco.cep}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">CEP</label>
-											</div>
-										</div>
-										<div class="input-field col s6">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.bairro')}? 'has-error'">
-												<i class="material-icons prefix">location_city</i> <input
-													th:field="*{endereco.bairro}"
-													id="icon_prefix"
-													type="text"
-													class="validate" /> <label for="icon_prefix">Bairro</label>
-											</div>
-										</div>
-										<div class="input-field col s5">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.estado')}? 'has-error'">
-												<i class="material-icons prefix">wc</i> <select
-													th:field="*{endereco.estado}">
-													<option value=""></option>
-													<option value="São Paulo">São Paulo</option>
-													<option value="Rio de Janeiro">Rio de Janeiro</option>
-												</select> <label>Estado</label>
-											</div>
-										</div>
-										<div class="input-field col s5">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.cidade')}? 'has-error'">
-												<i class="material-icons prefix">wc</i> <select
-													th:field="*{endereco.cidade}">
-													<option value=""></option>
-													<option value="São Paulo">São Paulo</option>
-													<option value="Rio de Janeiro">Rio de Janeiro</option>
-												</select> <label>Estado</label>
-											</div>
-										</div>
-										<div class="input-field col s2">
-											<div
-												th:classappend="${#fields.hasErrors('endereco.uf')}? 'has-error'">
-												<i class="material-icons prefix">wc</i> <select
-													th:field="*{endereco.uf}">
-													<option value=""></option>
-													<option value="SP">SP</option>
-													<option value="RJ">RJ</option>
-												</select> <label>UF</label>
-											</div>
-										</div>
-									</div>
-									<div class="">
-										<button
-											type="submit"
-											class="waves-effect waves-dark btn blue prev_page">CONFIRMAR</button>
-										<button
-											type="button"
-											class="waves-effect waves-dark btn-flat"
-											onclick="$('.collapsible').collapsible('open', 1);">VOLTAR</button>
-									</div>
-								</form>
+			
+	<div class="row">
+		<div class="col s12	 m12">
+			<div class="breadcrumb-barra">
+				<a th:href="@{/home}" class="breadcrumb">Painel de Controle</a> <a href="#" class="breadcrumb">Cadastros</a>
+				<a th:href="@{/fisica/novo}" class="breadcrumb">Pessoa Física</a>
+			</div>
+		</div>
+	</div>
+	
+			<div class="col s12 m12">
+				<div class="row">
+					<div th:include="/fragments/mensagemInfo"></div>
+				</div>
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title red-text">Dados Pessoais</span>
+					</div>
+
+					<div class="card-action">
+						<div class="row">
+							<div class="input-field col m6 s12">
+								<i class="material-icons prefix">accessibility</i> <input type="text" id="tx_nome"
+									class="validate tx_nome" th:field="*{nome}"
+									th:classappend="${#fields.hasErrors('nome')} ? invalid" /> <label for="nome"
+									data-error="Nome é obrigatório">Nome</label>
+							</div>
+							<div class="input-field col s6">
+								<div th:classappend="${#fields.hasErrors('tipoPessoa')}? invalid">
+									<i class="material-icons prefix">accessibility</i> <select th:field="*{tipoPessoa}">
+										<option value=""></option>
+										<option th:each="tipoPessoa : ${T(br.com.sigecon.enuns.TipoPessoa).values()}"
+											th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}">
+													</option>
+									</select> <label>Tipo</label>
+								</div>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">person_outline</i> <input id="cpf" name="cpf" type="text"
+									class="validate" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? invalid" />
+								<label for="cpf" data-error="O CPF é obrigatório">CPF</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">person_outline</i> <input
+									th:classappend="${#fields.hasErrors('rg')}? invalid" th:field="*{rg}" id="icon_prefix"
+									type="text" class="validate" /> <label for="icon_prefix" data-error="O RG é obrigatório">RG</label>
+							</div>
+							<div class="input-field s12 col m6">
+								<i class="material-icons prefix">date_range</i> <input id="dataNascimento" type="text"
+									class="datepicker" required="required" th:field="*{dataNascimento}"
+									th:classappend="${#fields.hasErrors('dataNascimento')} ? invalid" /> <label
+									for="dataNascimento" data-error="Data de nascimento deve ser informada">Data de
+									Nascimento</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">wc</i> <select
+									th:classappend="${#fields.hasErrors('sexo')}? invalid" th:field="*{sexo}">
+									<option value=""></option>
+									<option value="Masculino">Masculino</option>
+									<option value="Feminino">Feminido</option>
+								</select> <label>Sexo</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+		<!-- CONTATO -->
+		<div class="row">
+			<div class="col s12 m12">
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title red-text">Contato</span>
+					</div>
+					<div class="card-action">
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix">local_phone</i> <input
+									th:classappend="${#fields.hasErrors('contato.telefone')}? invalid"
+									th:field="*{contato.telefone}" id="icon_prefix" type="text" class="validate" /> <label
+									for="icon_prefix">Telefone</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">email</i> <input th:field="*{contato.email}"
+									th:classappend="${#fields.hasErrors('contato.email')}? invalid" id="icon_prefix"
+									type="email" class="validate" /> <label class="validate" for="email"
+									data-error="Não é um email válido" data-success="Email válido">Email</label>
+							</div>
+
+							<div class="input-field col s6">
+								<div th:classappend="${#fields.hasErrors('contato.celular')}? invalid">
+									<i class="material-icons prefix">smartphone</i> <input th:field="*{contato.celular}"
+										id="icon_prefix" type="text" class="validate" /> <label for="icon_prefix">Celular</label>
+								</div>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">smartphone</i> <input
+									th:classappend="${#fields.hasErrors('contato.celularAlt')}? invalid"
+									th:field="*{contato.celularAlt}" id="icon_prefix" type="text" class="validate" /> <label
+									for="icon_prefix">Celular Alternativo</label>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- ENDERECO -->
+		<div class="row">
+			<div class="col s12 m12">
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title red-text">Endereço</span>
+					</div>
+					<div class="card-action ho">
+						<div class="row">
+							<div class="input-field col s6">
+								<div th:classappend="${#fields.hasErrors('endereco.logradouro')}? invalid">
+									<i class="material-icons prefix">map</i> <input th:field="*{endereco.logradouro}"
+										id="icon_prefix" type="text" class="validate" /> <label for="icon_prefix">Logradouro</label>
+								</div>
+							</div>
+							<div class="input-field col s3">
+								<div th:classappend="${#fields.hasErrors('endereco.numero')}? invalid">
+									<i class="material-icons prefix">location_on</i> <input th:field="*{endereco.numero}"
+										id="icon_prefix" type="text" class="validate" /> <label for="icon_prefix">Número</label>
+								</div>
+							</div>
+							<div class="input-field col s3">
+								<div th:classappend="${#fields.hasErrors('endereco.complemento')}? invalid">
+									<i class="material-icons prefix">short_text</i> <input th:field="*{endereco.complemento}"
+										id="icon_prefix" type="text" class="validate" /> <label for="icon_prefix">Complemento</label>
+								</div>
+							</div>
+							<div class="input-field col s4">
+								<div th:classappend="${#fields.hasErrors('endereco.cep')}? invalid">
+									<i class="material-icons prefix">map</i> <input th:field="*{endereco.cep}" id="icon_prefix"
+										type="text" class="validate" /> <label for="icon_prefix">CEP</label>
+								</div>
+							</div>
+							<div class="input-field col s8">
+								<div th:classappend="${#fields.hasErrors('endereco.bairro')}? invalid">
+									<i class="material-icons prefix">location_city</i> <input th:field="*{endereco.bairro}"
+										id="icon_prefix" type="text" class="validate" /> <label for="icon_prefix">Bairro</label>
+								</div>
+							</div>
+							<div class="input-field col s4">
+								<div th:classappend="${#fields.hasErrors('endereco.estado')}? invalid">
+									<i class="material-icons prefix">location_city</i> <select th:field="*{endereco.estado}">
+										<option value=""></option>
+										<option value="São Paulo">São Paulo</option>
+										<option value="Rio de Janeiro">Rio de Janeiro</option>
+									</select> <label>Cidade</label>
+								</div>
+							</div>
+							<div class="input-field col s6">
+								<div th:classappend="${#fields.hasErrors('endereco.cidade')}? invalid">
+									<i class="material-icons prefix">location_city</i> <select th:field="*{endereco.cidade}">
+										<option value=""></option>
+										<option value="São Paulo">São Paulo</option>
+										<option value="Rio de Janeiro">Rio de Janeiro</option>
+									</select> <label>Estado</label>
+								</div>
+							</div>
+							<div class="input-field col s2">
+								<div th:classappend="${#fields.hasErrors('endereco.uf')}? invalid">
+									<i class="material-icons prefix">location_city</i> <select th:field="*{endereco.uf}">
+										<option value=""></option>
+										<option value="SP">SP</option>
+										<option value="RJ">RJ</option>
+									</select> <label>UF</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 element-position-m">
+				<button class="waves-effect waves-dark btn blue" type="submit">CADASTRAR</button>
+				<button class="btn btn-default waves-effect black-text #ffffff white">VOLTAR</button>
+			</div>
+		</div>
+	</form>
+	<!-- FIM CADASTRO -->
+
 </section>
 </html>

@@ -19,7 +19,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.sigecon.enuns.TipoPessoa;
@@ -33,10 +32,6 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idpessoa")
 	private Long idPessoa;
-
-	@NotBlank
-	@Column
-	private String nome;
 
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idEndereco")
@@ -60,7 +55,7 @@ public class Pessoa implements Serializable {
 		this.sexo = sexo;
 	}
 
-	// @Column(nullable = false)
+	@Column(name = "dataCadastro")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date dataCadastro;
@@ -72,10 +67,9 @@ public class Pessoa implements Serializable {
 
 	}
 
-	public Pessoa(Long idPessoa, String nome, Endereco endereco, TipoPessoa tipoPessoa, Contato contato, String sexo,
+	public Pessoa(Long idPessoa, Endereco endereco, TipoPessoa tipoPessoa, Contato contato, String sexo,
 			Date dataCadastro, boolean ativo) {
 		this.idPessoa = idPessoa;
-		this.nome = nome;
 		this.endereco = endereco;
 		this.tipoPessoa = tipoPessoa;
 		this.contato = contato;
@@ -90,14 +84,6 @@ public class Pessoa implements Serializable {
 
 	public void setIdPessoa(Long idPessoa) {
 		this.idPessoa = idPessoa;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public Endereco getEndereco() {
@@ -138,11 +124,6 @@ public class Pessoa implements Serializable {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
-	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [nome=" + nome + "]";
 	}
 
 }

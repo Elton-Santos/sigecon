@@ -1,3 +1,4 @@
+package br.com.sigecon.controller;
 // package br.com.sigecon.controller;
 //
 // import org.springframework.beans.factory.annotation.Autowired;

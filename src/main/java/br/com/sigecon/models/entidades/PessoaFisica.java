@@ -6,10 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -18,18 +17,29 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class PessoaFisica extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
-	@NotBlank
-	@Column(name = "cpf")
+	@Column
+	@NotBlank(message = "O nome é obrigatório")
+	private String nome;
+
+	@NotBlank(message = "O cpf é inválido")
+	@CPF(message = "Digite um CPF válido")
+	@Column(name = "cpf", unique=true)
 	private String cpf;
 
-	@NotBlank
 	@Column(name = "rg")
 	private String rg;
 
 	@Column(name = "dataNascimento")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public Date getDataNascimento() {
 		return dataNascimento;

@@ -14,8 +14,19 @@ public class PessoaJuridica extends Pessoa {
 	@Column(name = "cnpj")
 	private String cnpj;
 
-	@Column(name = "razaoSocail")
+	@Column(name = "razaoSocial")
 	private String razaoSocial;
+
+	@Column(name = "inscricaoEstadual")
+	private String incricaoEstadual;
+
+	public String getIncricaoEstadual() {
+		return incricaoEstadual;
+	}
+
+	public void setIncricaoEstadual(String incricaoEstadual) {
+		this.incricaoEstadual = incricaoEstadual;
+	}
 
 	public String getCnpj() {
 		return cnpj;

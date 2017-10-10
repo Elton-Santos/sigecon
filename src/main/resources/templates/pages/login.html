@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<link rel="stylesheet" th:href="@{/style/login-estilo.css}" />	
+
+<body>
+
+	<div class="div-login">
+		<hgroup>
+			<img th:src="@{/images/logo_p.png}"/>
+		</hgroup>
+		<form>
+		  	<div class="group">
+		    	<input type="text"/>
+		    	<span class="highlight"></span>
+		    	<label>E-mail</label>
+		  	</div>
+		  	<div class="group">
+		    	<input type="password"/>
+		    	<span class="highlight"></span>
+		    	<label>Senha</label>
+		  	</div>
+		   		<a th:href="@{/home}">
+			   		<button type="button" class="button buttonBlue">ACESSAR </button>
+		  		</a>
+		</form>
+		
+		<footer>
+		  <p>2017 SIGECON - Todos os direitos reservados.</p>
+		</footer>
+	</div>	
+		<div layout:include="fragments/scripts"></div>
+	</body>
+</html>
+

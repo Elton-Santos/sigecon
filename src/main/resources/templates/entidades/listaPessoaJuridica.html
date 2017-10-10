@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout/index">
+<head>
+<title>Pesquisa Jurídica</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+		<div class="section">
+			<div class="row">
+				<div class="col s12	 m12">
+					<a th:href="@{/juridica/add}" class="btn btn-default waves-effect black-text #ffffff white">
+						<i class="material-icons">add_circle</i> <span>Novo</span>
+					</a>
+				</div>
+			<div class="row">
+				<div class="col s12 m12">
+					<div class="card hoverable">
+						<div class="card-content black-text">
+							<span class="card-title">Pesquisa</span>
+							<div class="row">
+								<form
+									class="col s12"
+									method="get"
+									th:action="@{/juridica}"
+									th:object="${pessoaJuridica}">
+									<div class="row">
+										<div class="input-field col m12 s12 l6">
+											<i class="material-icons prefix">account_circle</i> <input
+												id="icon_prefix"
+												type="text"
+												class="validate"
+												th:field="*{nome}" /> <label for="icon_prefix">Informe
+												o nome</label>
+										</div>
+										<div class="input-field col m12 s12 l6">
+											<i class="material-icons prefix">account_circle</i> <input
+												id="icon_prefix"
+												type="text"
+												class="validate"
+												th:field="*{cnpj}" /> <label for="icon_prefix">Informe
+												o CNPJ</label>
+										</div>
+									</div>
+									<button
+										type="submit"
+										class="waves-effect waves-dark btn blue atual_page">CONFIRMAR
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 m12">
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title">Pessoa Jurídica</span>
+						<table class="responsive-table highlight">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Razão Social</th>
+									<th>CNPJ</th>
+									<th>Inscrição Estadual</th>
+									<th>Data de Abertura</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="pessoaJuridica : ${listaPessoaJuridica}">
+									<td th:text="pessoaJuridica.idPessoa"></td>
+									<td th:text="${pessoaJuridica.razaoSocial}"></td>
+									<td th:text="${pessoaJuridica.cnpj}"></td>
+									<td th:text="${pessoaJuridica.incricaoEstadual}"></td>
+									<td th:text="${pessoaJuridicaDataAbertura}"></td>
+									<td></td>
+									<td>
+										<div>
+											<a
+												th:href="@{/entidades/edit/{id}(id=${pessoaJuridica	.idPessoa})}">
+												<i class="material-icons prefix">edit</i>
+											</a>
+											<a
+												class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+												data-position="top"
+												href="#modal-remover-entidade"
+												th:attr="data-id=${pessoaJuridica.idPessoa}, data-nome=${pessoaJuridica.razaoSocial}"
+												data-delay="50"
+												data-tooltip="Apagar">
+												<i class="material-icons prefix">delete</i>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div></div>
+		<!-- Modal Estrutura -->
+		<div
+			id="modal-remover-entidade"
+			class="modal">
+			<div class="modal-content">
+				<h4>Exclusão de Pessoas</h4>
+				<span>Tem certeza que deseja remover a entidade ? </span>
+			</div>
+			<div class="modal-footer">
+				<form
+					th:attr="data-url-remover=@{/entidades}"
+					method="post">
+					<input
+						type="hidden"
+						name="_method"
+						value="DELETE" />
+					<button
+						type="submit"
+						class="modal-action modal-close waves-effect waves-light btn red darken-1"
+						style="margin: 6px">Sim</button>
+					<a
+						href="#!"
+						class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

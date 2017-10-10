@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 public class Contato {
 
@@ -19,14 +17,12 @@ public class Contato {
 	private String telefone;
 
 	@Column
-	@NotBlank
 	private String celular;
 
 	@Column
 	private String celularAlt;
 
 	@Column
-	@NotBlank
 	private String email;
 
 	public Long getIdContato() {

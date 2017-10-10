@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Table(name = "endereco")
 public class Endereco {
@@ -19,37 +17,30 @@ public class Endereco {
 	private Long idEndereco;
 
 	@Column
-	@NotBlank
 	private String logradouro;
 
 	@Column
 	private String descricao;
 
 	@Column
-	@NotBlank
 	private String numero;
 
 	@Column
 	private String complemento;
 
 	@Column
-	@NotBlank
 	private String cep;
 
 	@Column
-	@NotBlank
 	private String cidade;
 
 	@Column
-	@NotBlank
 	private String estado;
 
 	@Column
-	@NotBlank
 	private String bairro;
 
 	@Column
-	@NotBlank
 	private String uf;
 
 	public String getUf() {
