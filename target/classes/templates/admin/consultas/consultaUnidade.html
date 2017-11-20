@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<body>
+	<section layout:fragment="conteudo">
+		<div class="row">
+			<div class="col s12	 m12">
+				<div class="titulo-pagina">
+					<h5>Consulta Unidade</h5>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12	 m12">
+				<div class="breadcrumb-barra">
+					<a th:href="@{/admin/index}" class="breadcrumb">Painel de
+						Controle</a> <a th:href="@{/unidade/unidade}" class="breadcrumb">Unidade</a>
+					<a th:href="@{/unidade/unidade}" class="breadcrumb">Consulta</a>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="row">
+				<!------------------------------------- BOTÃO NOVO----------------------------------------->
+				<div class="col s12	 m12">
+					<a th:href="@{/unidade/novo}"
+						class="waves-effect black-text btn white"> <i
+						class="material-icons left">add_circle</i>Novo
+					</a>
+				</div>
+				<!------------------------------------- FIM BOTÃO----------------------------------------->
+				<div class="row">
+					<div class="col s12 m12">
+						<div class="card hoverable">
+							<div class="card-content black-text">
+								<span class="card-title card-span">Consultar Unidade</span>
+							</div>
+							<div class="card-action">
+
+								<div class="row">
+									<form class="col s12" method="get"
+										th:action="@{/consultaUnidade}" th:object="${consultaUnidade}">
+										<div class="row">
+											<div class="input-field col m12 s12 l6">
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix" type="text" class="validate"
+													th:field="*{nomeUnidade}" /> <label for="icon_prefix">Nome
+													Unidade</label>
+											</div>
+											<div class="input-field col m12 s12 l6">
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix" type="text" class="validate" /> <label
+													for="icon_prefix">CNPJ</label>
+											</div>
+										</div>
+										<button type="submit"
+											class="waves-effect waves-dark btn blue atual_page">Pesquisar
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col s12 m12">
+						<div class="card hoverable">
+							<div class="card-content black-text">
+								<span class="card-title card-span">Lista de Unidades</span>
+							</div>
+							<div class="card-action">
+
+								<table class="responsive-table	striped">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Nome Unidade</th>
+											<th>Proprietário</th>
+											<th>Valor Condomínio</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="consultaUnidade : ${listaUnidade}">
+											<td th:text="${consultaUnidade.idUnidade}"></td>
+											<td th:text="${consultaUnidade.nomeUnidade}"></td>
+											<td th:text="consultaUnidade.listaUnidade"></td>
+											<td th:text="${consultaUnidade.valorCondominio}"></td>
+											<td>
+												<div>
+													<a
+														th:href="@{/unidade/edit/{id}(id=${consultaUnidade.idUnidade})}"
+														class="tooltipped  waves-light modal-trigger"
+														data-tooltip="Editar"> <i
+														class="material-icons prefix">edit</i>
+													</a> <a
+														class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+														data-position="top" href="#modal-remover-entidade"
+														th:attr="data-id=${consultaUnidade.idUnidade}, data-nome=${consultaUnidade.nomeUnidade}"
+														data-delay="50" data-tooltip="Apagar"> <i
+														class="material-icons prefix">delete</i>
+													</a>
+												</div>
+											</td>
+											<!-- 											</tr> -->
+											<!-- 												<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
+											<!-- 											</tr>  -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 				Modal Estrutura -->
+				<div id="modal-remover-entidade" class="modal">
+					<div class="modal-content">
+						<h4>Exclusão de Condominio</h4>
+						<span>Tem certeza que deseja remover este condomínio? Todas
+							as contas, unidades e pessoas associadas a este condomínio também
+							serão apagadas.</span>
+					</div>
+					<div class="modal-footer">
+						<form th:attr="data-url-remover=@{/condominio}" method="post">
+							<input type="hidden" name="_method" value="DELETE" />
+							<button type="submit"
+								class="modal-action modal-close waves-effect waves-light btn red darken-1"
+								style="margin: 6px">Sim</button>
+							<a href="#!"
+								class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

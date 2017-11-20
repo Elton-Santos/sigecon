@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: sycon
+Implementation-Version: 1.0.0-SNAPSHOT
+Built-By: elton
+Implementation-Vendor-Id: br.com.sycon
+Build-Jdk: 1.8.0_151
+Implementation-URL: http://projects.spring.io/spring-boot/sycon/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

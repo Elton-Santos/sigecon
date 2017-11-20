@@ -1,0 +1,28 @@
+body {
+	background-color: #C1CDC1;
+}
+
+.breadcrumb-barra {
+	position: relative;
+	height: 25px;
+	margin: 0.5rem 0 1rem 0;
+	-webkit-transition: -webkit-box-shadow .25s;
+	transition: -webkit-box-shadow .25s;
+	transition: box-shadow .25s;
+	transition: box-shadow .25s, -webkit-box-shadow .25s;
+	border-radius: 2px;
+}
+
+/* Fontes responsivas */
+@media screen and (max-width:480px) {
+	html {
+		font-size: 80%;
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	html {
+		font-size: 85%;
+	}
+}
+/* Fim Fontes responsivas */

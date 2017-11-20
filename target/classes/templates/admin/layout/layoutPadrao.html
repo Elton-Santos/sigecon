@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+      <!-- IMPORTS CSS/SCRIPTS -->
+<head layout:include="admin/fragments/head"></head>
+
+<body>
+
+<!-- CABEÇARIO -->
+<header th:replace="admin/base/header :: header"></header>
+
+<!-- Conteudo dinamico -->
+<section layout:fragment="conteudo"></section>
+
+<!-- RODAPÉ -->
+<footer th:replace="admin/base/footer :: footer"></footer>
+
+<!--  Scripts-->
+<div layout:include="admin/fragments/scripts"></div>
+
+<th:block layout:fragment="javascript-extra"></th:block>
+
+</body>
+</html>

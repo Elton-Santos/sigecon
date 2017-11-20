@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<body>
+	<section layout:fragment="conteudo">
+		<div class="main">
+			<div class="row">
+				<div class="col s12	 m12">
+					<div class="card-title black-text text-darken-1">
+						<h5>Painel de Controle</h5>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<a th:href="@{/condominio/condominio}">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title"><h5>Condomínio</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a> <a th:href="@{/unidade/unidade}">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title	"><h5>Unidade</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a> 
+				<a th:href="@{/condominio/pessoa}">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title"><h5>Pessoas</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a> <a href="#!">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title"><h5>Financeiro</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="row">
+				<a href="#!">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title"><h5>Portaria</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a> <a href="#!">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title	"><h5>Assembleia</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a> <a href="#!">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title"><h5>Informativos</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a> <a href="paginas/consultarVeiculo.html">
+					<div class="col s6 m3">
+						<div class="card hoverable">
+							<div class="card-content black-text text-darken-1">
+								<span class="card-title"><h5>Veículos</h5></span>
+								<hr /> <br />
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

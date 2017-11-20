@@ -1,0 +1,10 @@
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/controller/LoginController.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/repository/UserRepository.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/repository/RoleRepository.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/service/UserServiceImpl.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/configuration/SecurityConfiguration.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/configuration/WebMvcConfig.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/model/User.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/DemoApplication.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/service/UserService.java
+/home/elton/eclipse-workspace/PIM/sycon/src/main/java/com/example/model/Role.java

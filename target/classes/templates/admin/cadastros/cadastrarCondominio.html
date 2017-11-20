@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<body>
+	<section layout:fragment="conteudo">
+		<!--------------------------------------- DADOS DO CONDOMINIO----------------------------------------->
+		<div class="row">
+			<div class="col s12	 m12">
+				<div class="titulo-pagina">
+					<h5>Cadastro de Condomínios</h5>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12	 m12">
+				<div class="breadcrumb-barra">
+					<a th:href="@{/admin/index}" class="breadcrumb">Painel de Controle</a> <a
+						th:href="@{/condominio/condominio}" class="breadcrumb">Condomínio</a> <a
+						th:href="@{/condominio/novo}" class="breadcrumb">Cadastrar</a>
+				</div>
+			</div>
+		</div>
+		<form class="coll s12" method="POST" th:action="@{/condominio/novo}" th:object="${condominio}"
+			id="form">
+			<input type="hidden" th:field="*{idCondominio}" />
+
+			<div class="section">
+				<div class="row">
+					<div class="col s12 m12">
+						<div class="card hoverable">
+							<div class="card-content black-text">
+								<span class="card-title card-span">Dados do Condomínio</span>
+							</div>
+							<div class="card-action">
+
+								<div class="row">
+									<div class="switch">
+										<label> Inativo <input type="checkbox" checked> <span class="lever"></span>
+											Ativo
+										</label>
+									</div>
+
+
+									<div class="row">
+										<div class="input-field col m12 s12 l6">
+											<i class="material-icons prefix">home</i> <input id="icon_prefix" type="text"
+												class="validate" th:field="*{nomeCondominio}" /> <label for="icon_prefix">Nome
+												Condomínio</label>
+										</div>
+										<div class="input-field col m12 s12 l3">
+											<i class="material-icons prefix">monetization_on</i> <input id="icon_prefix" type="text"
+												class="validate" th:field="*{taxaCondominio}" /> <label for="icon_prefix">Valor
+												do Condomínio</label>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!------------------------------------------ ENDERECO ---------------------------------------->
+			<div class="row">
+				<div class="col s12 m12">
+					<div class="card hoverable">
+						<div class="card-content black-text">
+							<span class="card-title black-text">Endereço</span>
+						</div>
+						<div class="card-action ho">
+							<div class="row">
+								<div class="input-field col s6">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.logradouro')}? invalid">
+										<i class="material-icons prefix">map</i> <input
+											th:field="*{enderecoCondominio.logradouro}" id="icon_prefix" type="text" class="validate" />
+										<label for="icon_prefix">Logradouro</label>
+									</div>
+								</div>
+								<div class="input-field col s3">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.numero')}? invalid">
+										<i class="material-icons prefix">location_on</i> <input
+											th:field="*{enderecoCondominio.numero}" id="icon_prefix" type="text" class="validate" />
+										<label for="icon_prefix">Número</label>
+									</div>
+								</div>
+								<div class="input-field col s3">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.complemento')}? invalid">
+										<i class="material-icons prefix">short_text</i> <input
+											th:field="*{enderecoCondominio.complemento}" id="icon_prefix" type="text"
+											class="validate" /> <label for="icon_prefix">Complemento</label>
+									</div>
+								</div>
+								<div class="input-field col s2">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.cep')}? invalid">
+										<i class="material-icons prefix">map</i> <input th:field="*{enderecoCondominio.cep}"
+											id="icon_prefix" type="text" class="validate" /> <label for="icon_prefix">CEP</label>
+									</div>
+								</div>
+								<div class="input-field col s4">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.bairro')}? invalid">
+										<i class="material-icons prefix">location_city</i> <input
+											th:field="*{enderecoCondominio.bairro}" id="icon_prefix" type="text" class="validate" />
+										<label for="icon_prefix">Bairro</label>
+									</div>
+								</div>
+								<div class="input-field col s4">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.estado')}? invalid">
+										<i class="material-icons prefix">location_city</i> <select
+											th:field="*{enderecoCondominio.estado}">
+											<option value=""></option>
+											<option value="São Paulo">São Paulo</option>
+											<option value="Rio de Janeiro">Rio de Janeiro</option>
+										</select> <label>Cidade</label>
+									</div>
+								</div>
+								<div class="input-field col s6">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.cidade')}? invalid">
+										<i class="material-icons prefix">location_city</i> <select
+											th:field="*{enderecoCondominio.cidade}">
+											<option value=""></option>
+											<option value="São Paulo">São Paulo</option>
+											<option value="Rio de Janeiro">Rio de Janeiro</option>
+										</select> <label>Estado</label>
+									</div>
+								</div>
+								<div class="input-field col s2">
+									<div th:classappend="${#fields.hasErrors('enderecoCondominio.uf')}? invalid">
+										<i class="material-icons prefix">location_city</i> <select
+											th:field="*{enderecoCondominio.uf}">
+											<option value=""></option>
+											<option value="SP">SP</option>
+											<option value="RJ">RJ</option>
+										</select> <label>UF</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!------------------------------------------ UNIDADE ---------------------------------------->
+			<!-- 			<div class="row"> -->
+			<!-- 				<div class="col s12 m12"> -->
+			<!-- 					<div class="card hoverable"> -->
+			<!-- 						<div class="card-content black-text"> -->
+			<!-- 							<span class="card-title red-text">Unidade</span> -->
+			<!-- 						</div> -->
+			<!-- 						<div class="card-action ho"> -->
+			<!-- 							<div class="row"> -->
+			<!-- 								<div class="input-field col s6"> -->
+			<!-- 									<div th:classappend="${#fields.hasErrors('unidade.valorCondominio')}? invalid"> -->
+			<!-- 										<i class="material-icons prefix">map</i> <input -->
+			<!-- 											th:field="*{unidade.valorCondominio}" id="icon_prefix" type="text" class="validate" /> -->
+			<!-- 										<label for="icon_prefix">Logradouro</label> -->
+			<!-- 									</div> -->
+			<!-- 								</div> -->
+			<!-- 							</div> -->
+			<!-- 						</div> -->
+			<!-- 					</div> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
+
+
+			<!------------------------------------------ BOTÕES ------------------------------------------>
+			<div class="row">
+				<div class="col s12 element-position-m">
+					<button type="submit" class="waves-effect waves-dark btn blue atual_page">Cadastrar</button>
+					<a th:href="@{/condominio/condominio}" class="waves-effect black-text btn white"> <i
+						class="material-icons left">arrow_back</i>Voltar
+					</a>
+				</div>
+			</div>
+			<!----------------------------------------- FIM BOTẼOS ---------------------------------------->
+		</form>
+	</section>
+
+</body>
+</html>

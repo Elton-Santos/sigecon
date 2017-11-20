@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<body>
+	<section layout:fragment="conteudo">
+		<div class="row">
+			<div class="col s12	 m12">
+				<div class="titulo-pagina">
+					<h5>Consulta Condomínio</h5>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12	 m12">
+				<div class="breadcrumb-barra">
+					<a th:href="@{/admin/index}" class="breadcrumb">Painel de
+						Controle</a> <a th:href="@{/condominio/condominio}" class="breadcrumb">Condomínio</a>
+					<a th:href="@{/condominio/novo}" class="breadcrumb">Consultar</a>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="row">
+				<!--------------------------------------- BOTÃO NOVO----------------------------------------->
+				<div class="col s12	 m12">
+					<a th:href="@{/condominio/novo}"
+						class="waves-effect black-text btn white"><i
+						class="material-icons left">add_circle</i>Novo</a>
+				</div>
+				<!--------------------------------------- FIM BOTÃO ----------------------------------------->
+				<div class="row">
+					<div class="col s12 m12">
+						<div class="card hoverable">
+							<div class="card-content black-text">
+								<span class="card-title card-span">Consultar Condomínios</span>
+							</div>
+							<div class="card-action">
+
+								<div class="row">
+									<form class="col s12" method="get" th:action="@{/condominio}"
+										th:object="${condominio}">
+										<div class="row">
+											<div class="input-field col m12 s12 l6">
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix" type="text" class="validate"
+													th:field="*{nomeCondominio}" /> <label for="icon_prefix">Nome</label>
+											</div>
+											<div class="input-field col m12 s12 l6">
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix" type="text" class="validate" /> <label
+													for="icon_prefix">Endereço</label>
+											</div>
+										</div>
+										<button type="submit"
+											class="waves-effect waves-dark btn blue atual_page">Pesquisar
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col s12 m12">
+						<div class="card hoverable">
+							<div class="card-content black-text">
+								<span class="card-title card-span">Lista de Condomínios</span>
+							</div>
+							<div class="card-action">
+
+								<table class="responsive-table	striped">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Nome do Comdomínio</th>
+											<th>Endereco</th>
+											<th>Taxa</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="condominio : ${listaCondominio}">
+											<td th:text="${condominio .idCondominio}"></td>
+											<td th:text="${condominio.nomeCondominio}"></td>
+											<td th:text="${condominio.enderecoCondominio.logradouro}"></td>
+											<td th:text="${condominio.taxaCondominio}"></td>
+											<td>
+												<div>
+													<a
+														th:href="@{/condominio/edit/{id}(id=${condominio.idCondominio})}"
+														class="tooltipped  waves-light modal-trigger"
+														data-tooltip="Editar"> <i
+														class="material-icons prefix">edit</i>
+													</a> 
+													<a class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+														data-position="top" href="#modal-remover-entidade"
+														th:attr="data-id=${condominio.idCondominio}, data-nome=${condominio.nomeCondominio}"
+														data-delay="50" data-tooltip="Apagar"> 
+														<i class="material-icons prefix">delete</i>
+													</a>
+												</div>
+											</td>
+
+											<!-- 									<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
+									</tbody>
+								</table>
+							</div>
+							<!-- 					<div th:replace="/admin/paginacao :: paginacao (${pagina})"></div> -->
+						</div>
+					</div>
+				</div>
+				<!-- 				Modal Estrutura -->
+				<div id="modal-remover-entidade" class="modal">
+					<div class="modal-content">
+						<h4>Exclusão de Condominio</h4>
+						<span>Tem certeza que deseja remover este condomínio? Todas as contas, unidades e pessoas associadas a este condomínio também serão apagadas.</span>
+					</div>
+					<div class="modal-footer">
+						<form th:attr="data-url-remover=@{/condominio}" method="post">
+							<input type="hidden" name="_method" value="DELETE" />
+							<button type="submit"
+								class="modal-action modal-close waves-effect waves-light btn red darken-1"
+								style="margin: 6px">Sim</button>
+							<a href="#!"
+								class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+<!-- <!--  -->
+

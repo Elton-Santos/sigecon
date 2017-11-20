@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../static/images/favicon.png" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link th:href="@{/materialize/css/materialize.css}" type="text/css"
+	rel="stylesheet" media="screen,projection" />
+<link rel="stylesheet" th:href="@{/vendor/css/login-novo.css}" />
+</head>
+
+<body>
+	<div class="section"></div>
+	<main>
+	<center>
+
+		<div class="section"></div>
+
+		<img class="responsive-img" style="width: 180px;"
+			th:src="@{/vendor/images/new_logo_p.png}" />
+		<div class="section"></div>
+
+
+
+		<div class="container">
+			<div class="z-depth-1 grey lighten-4 row"
+				style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+				<form th:action="@{/login}" method="POST" class="form-signin">
+					<div class='row'>
+						<div class='col s12'></div>
+					</div>
+
+					<div class='row'>
+						<div class='input-field col s12'>
+							<input class='validate' type='text' name='email' id='email' /> <label
+								for='email'>E-mail</label>
+						</div>
+					</div>
+
+					<div class='row'>
+						<div class='input-field col s12'>
+							<input class='validate' type='password' name='password'
+								id='password' /> <label for='password'>Senha</label>
+						</div>
+
+						<div align="center" th:if="${param.error}">
+							<p style="font-size: 20; color: #FF1C19;"><br />Email ou senha
+								está incorreto, tente novamente.</p><br />
+						</div>
+
+						<label style='float: right;'> <a class='blue-text'
+							href='#!'><b>Esqueceu sua senha?</b></a>
+						</label>
+					</div>
+
+					<br />
+					<center>
+						<div class='row'>
+							<button type='Submit' name='Submit'
+								class='col s12 btn btn-large waves-effect indigo' value="Login" th:text="Acessar"></button>
+						</div>
+						<div class="section">Não possui acesso? <a th:href="@{/registration}">Registre-se</a></div>
+					</center>
+				</form>
+			</div>
+		</div>
+	</center>
+
+	<div class="section"></div>
+	</main>
+
+	<div layout:include="admin/fragments/scripts"></div>
+</body>
+
+</html>
+
+
+</body>
+</html>
