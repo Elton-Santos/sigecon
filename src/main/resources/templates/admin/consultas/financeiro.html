@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<section layout:fragment="conteudo">
+	<div class="row">
+		<div class="col s6 m3">
+			<div class="card-title black-text text-darken-1">
+				<h5>Financeiro</h5>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<a th:href="@{/condominio/contaAPagar}">
+			<div class="col s6 m3">
+				<div class="card hoverable ">
+					<div class="card-content black-text red lighten-1">
+						<div class="card-title">
+							<img class="responsive-img"
+								th:src="@{/vendor/images/botoes/btnContasPagar.png}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</a> <a th:href="@{/condominio/contaAReceber}">
+			<div class="col s6 m3">
+				<div class="card hoverable">
+					<div class="card-content black-text green lighten-1">
+						<div class="card-title">
+							<img class="responsive-img"
+								th:src="@{/vendor/images/botoes/btnContasReceber.png}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</a> <a th:href="@{/condominio/conta}">
+			<div class="col s6 m3">
+				<div class="card hoverable">
+					<div class="card-content black-text light-blue lighten-3">
+						<div class="card-title">
+							<img class="responsive-img"
+								th:src="@{/vendor/images/botoes/btnResumoContas.png}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</a> <a th:href="@{/condominio/relatorio}">
+			<div class="col s6 m3">
+				<div class="card hoverable">
+					<div class="card-content black-text deep-purple lighten-2">
+						<div class="card-title">
+							<img class="responsive-img"
+								th:src="@{/vendor/images/botoes/btnRelatorios.png}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+		<div class="col s6 m3">
+			<a th:href="@{/admin/index}"
+				class="waves-effect black-text btn white"> <i
+				class="material-icons left">arrow_back</i>Voltar
+			</a>
+		</div>
+	</div>
+
+</section>
+</html>

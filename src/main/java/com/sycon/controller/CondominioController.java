@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sycon.model.Condominio;
+import com.sycon.model.Pessoa;
 import com.sycon.model.Unidade;
 import com.sycon.repository.CondominioRepository;
 import com.sycon.service.CondominioService;
@@ -37,8 +39,21 @@ public class CondominioController {
 	@RequestMapping("/condominio")
 	public ModelAndView findAll() {
 		ModelAndView view = new ModelAndView(INDEX);
+		view.addObject("condominioPesquisa", new Condominio());
 		view.addObject("condominio", new Condominio());
 		view.addObject("listaCondominio", service.findAll());
+		return view;
+	}
+	
+	@RequestMapping(value = "/condominio", params = {"nomeCondominio","cnpj"})
+	public ModelAndView pesquisar(@RequestParam(value = "nomeCondominio") String nomeCondominio,@RequestParam(value = "cnpj") String cnpj) {
+		ModelAndView view = new ModelAndView(INDEX);
+		view.addObject("condominioPesquisa", new Condominio());
+		//Se os valores dos campos forem brancos, lista todos os registros
+		if(nomeCondominio.isEmpty()&&cnpj.isEmpty())
+			return findAll();
+		else
+			view.addObject("listaCondominio", service.pesquisa(cnpj, nomeCondominio));
 		return view;
 	}
 
@@ -68,11 +83,13 @@ public class CondominioController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable("id") Long id) {
-		
+	public ModelAndView excluir(@PathVariable("id") Long id) {
+		ModelAndView view = new ModelAndView(INDEX);
 		service.delete(id);
-		
-		return "redirect:admin/consultas/consultaCondominio";
+		view.addObject("condominioPesquisa", new Condominio());
+		view.addObject("condominio", new Condominio());
+		view.addObject("listaCondominio", service.findAll());
+		return view;
 	}
 
 	// @RequestMapping("/condominio")

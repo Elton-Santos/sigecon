@@ -2884,7 +2884,7 @@ ul.staggered-list li {
 
 /* RODAPÉ */
 .page-footer {
-  padding-top: 20px;
+  padding-top: 10px;
   color: #fff;
   background-color: #104E8B;
   margin-left: 0px;
@@ -2892,7 +2892,7 @@ ul.staggered-list li {
 
 .page-footer .footer-copyright {
   overflow: hidden;
-  min-height: 50px;
+  min-height: 30px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

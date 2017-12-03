@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<head>
+<title
+	th:text="${codigo == null ? 'Cadastro de Pessoas' : 'Edição de Pessoas'}">Título</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<div th:include="/admin/messages/mensagemInfo"></div>
+	<div th:include="/admin/messages/mensagemErro"></div>
+
+	<div class="row">
+		<div class="col s12	 m12">
+			<h5
+				th:text="${codigo == null ? 'Cadastro de Conta à Receber' : 'Edição de Conta à Receber'}">Cadastro
+				de Contas a Receber</h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12	 m12">
+			<div class="breadcrumb-barra">
+				<div class="row">
+					<a th:href="@{/admin/index}" class="breadcrumb">Painel de
+						Controle</a> <a th:href="@{/condominio/contas}" class="breadcrumb">Financeiro</a>
+					<a th:href="@{/condominio/contaAReceber}" class="breadcrumb">Contas
+						à Receber</a> <a th:href="@{/condominio/contaAReceber/novo/}"
+						class="breadcrumb">Cadastrar conta</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form class="col s12" method="POST"
+		th:action="@{/condominio/contaAReceber/novo}"
+		th:object="${contaAReceber}" id="form">
+		<input type="hidden" th:field="*{idCR}" />
+		<div class="row">
+			<div class="col s12 m12">
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title card-span">Dados Pessoais</span>
+					</div>
+					<div class="card-action">
+						<div class="row">
+							<div class="row">
+								<div class="input-field col m12 s12 l5">
+									<i class="material-icons prefix">account_circle</i> <input
+										id="icon_prefix" type="text" class="validate"
+										th:field="*{nomeCR}" /> <label for="icon_prefix">Nome
+										da Conta</label>
+								</div>
+								<div class="input-field col m12 s12 l5">
+									<i class="material-icons prefix">account_circle</i> <input
+										id="icon_prefix" type="text" class="validate"
+										th:field="*{descricaoCR}" /> <label for="icon_prefix">Descrição
+										da Conta</label>
+								</div>
+								<div class="input-field col m12 s12 l2">
+									<i class="material-icons prefix">account_circle</i> <input
+										id="icon_prefix" type="text" class="validate"
+										th:field="*{valorCR}" /> <label for="icon_prefix">Valor
+										Devido</label>
+								</div>
+								<div class="input-field col m12 s12 l2">
+									<i class="material-icons prefix">account_circle</i> <input
+										id="icon_prefix" type="text" class="validate"
+										th:field="*{boleto}" /> <label for="icon_prefix">Boleto</label>
+								</div>
+								<div class="input-field s12 col m3">
+									<i class="material-icons prefix">date_range</i> <input
+										id="dtVencimentoCR" type="text" class="datepicker"
+										required="required" th:field="*{dtVencimentoCR}" /> <label
+										for="dtVencimentoCR">Data do Vencimento</label>
+								</div>
+
+								<div class="input-field s12 col m3">
+									<i class="material-icons prefix">date_range</i> <input
+										id="dtPagamentoCR" type="text" class="datepicker"
+										required="required" th:field="*{dtPagamentoCR}" /> <label
+										for="dtPagamentoCR">Data do Pagamento</label>
+								</div>
+								<div class="input-field col m12 s12 l4">
+									<select class="form-control" th:field="*{unidadeCR}">
+										<option value="0">Lista de Unidades</option>
+										<option th:each="unidadeLista : ${unidades}"
+											th:value="${unidadeLista.idUnidade}"
+											th:text="${unidadeLista.nomeUnidade}"></option>
+									</select>
+								</div>
+								<div class="input-field col m12 s12 l4">
+									<select class="form-control" th:field="*{contaCR}">
+										<option value="0">Lista de Contas</option>
+										<option th:each="contaLista : ${contas}"
+											th:value="${contaLista.idConta}"
+											th:text="${contaLista.descricaoConta}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!------------------------------------------ BOTÕES ---------------------------------------- -->
+			<div class="row">
+				<div class="col s12 element-position-m">
+					<button type="submit"
+						class="waves-effect waves-dark btn blue atual_page">Cadastrar</button>
+					<a th:href="@{/condominio/contaAReceber}"
+						class="waves-effect black-text btn white"> <i
+						class="material-icons left">arrow_back</i>Voltar
+					</a> <a th:href="@{/condominio/contaAReceber}"
+						class="waves-effect black-text btn white "> <i
+						class="material-icons left "></i>Cancelar
+					</a>
+				</div>
+			</div>
+			<!----------------------------------------- FIM BOTẼOS -------------------------------------- -->
+		</div>
+	</form>
+</section>
+</html>

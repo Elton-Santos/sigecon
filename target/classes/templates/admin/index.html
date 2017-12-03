@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="/admin/layout/layoutPadrao">
 
 <body>
@@ -18,37 +19,44 @@
 				<a th:href="@{/condominio/condominio}">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title"><h5>Condomínio</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text indigo lighten-3">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnCondominio.png}">
+								</div>
 							</div>
 						</div>
 					</div>
 				</a> <a th:href="@{/unidade/unidade}">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title	"><h5>Unidade</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text teal lighten-4">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnUnidade.png}">
+								</div>
 							</div>
 						</div>
 					</div>
 				</a> 
+				
 				<a th:href="@{/condominio/pessoa}">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title"><h5>Pessoas</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text light-blue accent-4">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnPessoas.png}">
+								</div>
 							</div>
 						</div>
 					</div>
-				</a> <a href="#!">
+				</a> 
+				
+				<a th:href="@{/condominio/contas}">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title"><h5>Financeiro</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text green lighten-2">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnFinanceiro.png}">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -58,36 +66,40 @@
 				<a href="#!">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title"><h5>Portaria</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text yellow lighten-3">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnPortaria.png}">
+								</div>
 							</div>
 						</div>
 					</div>
 				</a> <a href="#!">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title	"><h5>Assembleia</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text brown lighten-3">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnAssembleia.png}">
+								</div>
 							</div>
 						</div>
 					</div>
 				</a> <a href="#!">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title"><h5>Informativos</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text deep-orange lighten-2">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnInformativos.png}">
+								</div>
 							</div>
 						</div>
 					</div>
 				</a> <a href="paginas/consultarVeiculo.html">
 					<div class="col s6 m3">
 						<div class="card hoverable">
-							<div class="card-content black-text text-darken-1">
-								<span class="card-title"><h5>Veículos</h5></span>
-								<hr /> <br />
+							<div class="card-content black-text grey">
+								<div class="card-title">
+								<img class="responsive-img" th:src="@{/vendor/images/botoes/btnVeiculos.png}">
+								</div>
 							</div>
 						</div>
 					</div>

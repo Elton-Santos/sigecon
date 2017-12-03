@@ -1,19 +1,18 @@
 package com.sycon.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-import com.sycon.model.Pessoa;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -25,23 +24,24 @@ import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private long id;
-	
+
 	private String email;
 	private String password;
 	private Date dataCadastro;
 	private Date dataAtualizacao;
 	private int active;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-	
+
 	@Column(name = "data_cadastro", nullable = false)
 	public Date getDataCriacao() {
 		return dataCadastro;
@@ -51,7 +51,6 @@ public class User {
 		this.dataCadastro = dataCadastro;
 	}
 
-	
 	public long getId() {
 		return id;
 	}
@@ -92,7 +91,6 @@ public class User {
 		this.active = active;
 	}
 
-	
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -117,8 +115,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", dataCadastro=" + dataCadastro + ", dataAtualizacao=" + dataAtualizacao + ", active="
-				+ active + ", roles=" + roles + "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", dataCadastro=" + dataCadastro
+				+ ", dataAtualizacao=" + dataAtualizacao + ", active=" + active + ", roles=" + roles + "]";
 	}
 
 	@PrePersist
@@ -127,6 +125,5 @@ public class User {
 		dataCadastro = atual;
 		dataAtualizacao = atual;
 	}
-
 
 }

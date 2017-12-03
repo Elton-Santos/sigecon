@@ -42,8 +42,9 @@
 							<div class="card-action">
 
 								<div class="row">
-									<form class="col s12" method="get"
-										th:action="@{/consultaUnidade}" th:object="${consultaUnidade}">
+									<form class="col s12" method="GET"
+										th:action="@{/unidade/pesquisaUnidade}"
+										th:object="${consultaUnidade}">
 										<div class="row">
 											<div class="input-field col m12 s12 l6">
 												<i class="material-icons prefix">account_circle</i> <input
@@ -51,10 +52,22 @@
 													th:field="*{nomeUnidade}" /> <label for="icon_prefix">Nome
 													Unidade</label>
 											</div>
-											<div class="input-field col m12 s12 l6">
-												<i class="material-icons prefix">account_circle</i> <input
-													id="icon_prefix" type="text" class="validate" /> <label
-													for="icon_prefix">CNPJ</label>
+											<div class="input-field col m12 s12 l3">
+												<select class="form-control"
+													th:field="*{proprietarioUnidade}">
+													<option value="0">Lista de Proprietários</option>
+													<option th:each="pessoalista : ${pessoas}"
+														th:value="${pessoalista.idPessoa}"
+														th:text="${pessoalista.nome}"></option>
+												</select>
+											</div>
+											<div class="input-field col m12 s12 l3">
+												<select class="form-control" th:field="*{condominio}">
+													<option value="0">Lista de Condominios</option>
+													<option th:each="condominiolista : ${condominios}"
+														th:value="${condominiolista.idCondominio}"
+														th:text="${condominiolista.nomeCondominio}"></option>
+												</select>
 											</div>
 										</div>
 										<button type="submit"
@@ -78,16 +91,18 @@
 										<tr>
 											<th>ID</th>
 											<th>Nome Unidade</th>
-											<th>Proprietário</th>
 											<th>Valor Condomínio</th>
+											<th>Proprietário</th>
+											<th>Condomínio</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="consultaUnidade : ${listaUnidade}">
 											<td th:text="${consultaUnidade.idUnidade}"></td>
 											<td th:text="${consultaUnidade.nomeUnidade}"></td>
-											<td th:text="consultaUnidade.listaUnidade"></td>
 											<td th:text="${consultaUnidade.valorCondominio}"></td>
+											<td th:text="${consultaUnidade.proprietarioUnidade.nome}"></td>
+											<td th:text="${consultaUnidade.condominio.nomeCondominio	}"></td>
 											<td>
 												<div>
 													<a
@@ -111,6 +126,10 @@
 								</table>
 							</div>
 						</div>
+						<a th:href="@{/admin/index}"
+							class="waves-effect black-text btn white"> <i
+							class="material-icons left">arrow_back</i>Voltar
+						</a>
 					</div>
 				</div>
 				<!-- 				Modal Estrutura -->
@@ -122,7 +141,7 @@
 							serão apagadas.</span>
 					</div>
 					<div class="modal-footer">
-						<form th:attr="data-url-remover=@{/condominio}" method="post">
+						<form th:attr="data-url-remover=@{/unidade}" method="post">
 							<input type="hidden" name="_method" value="DELETE" />
 							<button type="submit"
 								class="modal-action modal-close waves-effect waves-light btn red darken-1"

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- IMPORTS CSS/SCRIPTS -->
+<head layout:include="admin/fragments/head"></head>
+<div class="navbar-fixed">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo center"> <img
+				th:src="@{/vendor/images/new_logo_b.png}"></a> <a
+				th:href="@{/condominio/contas}"
+				class="left button-menu-left show-on-large"> <i
+				class="material-icons">arrow_back</i></a>
+		</div>
+	</nav>
+</div>
+<div class="section ">
+	<!------------------------------ SALDO NO PEDÍODO ----------------------->
+
+
+	<div class="row">
+		<div class="col s12	 m12">
+			<h5>Relatório Financeiro</h5>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12	 m12">
+			<div class="breadcrumb-barra">
+				<a th:href="@{/admin/index}" class="breadcrumb">Painel de
+					Controle</a> <a th:href="@{/condominio/contas}" class="breadcrumb">Financeiro</a>
+				<a th:href="@{/condominio/relatorio}" class="breadcrumb">Relatório</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12	 m12">
+
+			<div class="card hoverable">
+				<div class="card-content black-text">
+					<span class="card-title card-span">Saldo no Período</span>
+				</div>
+
+				<div class="card-action">
+					<div class="row">
+						<div class="col s3 m6">
+							<div class="card-content black-text">
+								<table
+									class="responsive-table bordered striped highlight centered">
+									<thead>
+										<tr class="indigo darken-3 white-text">
+											<th>Saldo Inicial todas as Contas</th>
+											<th>Valor</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Texto 1</td>
+											<td>R$ 23.4230,00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col s3 m6">
+							<div class="card-content black-text">
+								<table
+									class="responsive-table bordered striped highlight centered">
+									<thead>
+										<tr class="blue darken-3 white-text">
+											<th>Saldo Fiscal todas as Contas</th>
+											<th>Valor</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Texto 2</td>
+											<td>R$ 59.850,00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!------------------------------ RECEITAS NO PEDÍODO ----------------------->
+	<div class="row">
+		<div class="col s6 m6">
+			<div class="card hoverable">
+				<div class="card-content black-text">
+					<span class="card-title card-span">Receitas no Período</span>
+				</div>
+
+				<div class="card-action">
+
+					<table class="responsive-table bordered striped highlight centered">
+						<thead>
+							<tr class="green darken-4 white-text">
+								<th>ID</th>
+								<th>Conta</th>
+								<th>Unidade</th>
+								<th>Documento</th>
+							</tr>
+						</thead>
+
+						<tbody th:each="contas : ${listaContas}">
+							<tr>
+								<td th:text="${contas.idConta}"></td>
+								<td th:text="${contas.descricaoConta}"></td>
+								<td th:text="${contas.totalReceitas}"></td>
+								<td th:text="${contas.totalDespesas}"></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+		<!------------------------------ SALDO NO PEDÍODO ----------------------->
+		<div class="col s6 m6">
+			<div class="card hoverable">
+				<div class="card-content black-text">
+					<span class="card-title card-span">Débito no Período</span>
+				</div>
+
+				<div class="card-action">
+
+					<table class="responsive-table bordered striped highlight centered">
+						<thead>
+							<tr class="amber accent-4 white-text">
+								<th>ID</th>
+								<th>Conta</th>
+								<th>Unidade</th>
+								<th>Documento</th>
+							</tr>
+						</thead>
+
+						<tbody th:each="contas : ${listaContas}">
+							<tr>
+								<td th:text="${contas.idConta}"></td>
+								<td th:text="${contas.descricaoConta}"></td>
+								<td th:text="${contas.totalReceitas}"></td>
+								<td th:text="${contas.totalDespesas}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!------------------------------ RECEITAS/DESPESAS LIQUIDADAS ----------------------->
+		<div class="row">
+			<div class="col s12	 m12">
+
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title card-span">Receitas/Despesas
+							Liquidadas</span>
+					</div>
+
+					<div class="card-action">
+						<div class="row">
+							<div class="col s3 m6">
+								<div class="card-content black-text">
+									<table
+										class="responsive-table bordered striped highlight centered">
+										<thead>
+											<tr class="green darken-4 white-text">
+												<th>Qtd Receitas</th>
+												<th>Valor</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>5</td>
+												<td>R$ 34.290,00</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col s3 m6">
+								<div class="card-content black-text">
+									<table
+										class="responsive-table bordered striped highlight centered">
+										<thead>
+											<tr class="red darken-4 white-text">
+												<th>Qtd Despesas</th>
+												<th>Valor</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>4</td>
+												<td>R$ 9.850,00</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a th:href="@{/condominio/contas}"
+					class="waves-effect black-text btn white"> <i
+					class="material-icons left">arrow_back</i> Voltar
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  Scripts-->
+<div layout:include="admin/fragments/scripts"></div>
+<th:block layout:fragment="javascript-extra"></th:block>
+</html>

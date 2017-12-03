@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -42,14 +42,14 @@ public class Pessoa implements Serializable {
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idEndereco")
 	private Endereco endereco;
-	
+
 	private TipoPessoa tipoPessoa;
-	
+
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idContato")
 	private Contato contato;
 	private int active;
-	
+
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -72,7 +72,6 @@ public class Pessoa implements Serializable {
 		this.active = active;
 	}
 
-
 	public long getIdPessoa() {
 		return idPessoa;
 	}
@@ -82,7 +81,7 @@ public class Pessoa implements Serializable {
 	}
 
 	@Column(name = "nome")
-	@NotEmpty(message = "*por favor, digite seu nome")
+	@NotBlank
 	public String getNome() {
 		return nome;
 	}
@@ -91,7 +90,6 @@ public class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 
-	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -109,7 +107,6 @@ public class Pessoa implements Serializable {
 		this.tipoPessoa = tipoPessoa;
 	}
 
-
 	public Contato getContato() {
 		return contato;
 	}
@@ -118,6 +115,7 @@ public class Pessoa implements Serializable {
 		this.contato = contato;
 	}
 
+	@CPF(message = "obrigatório CPF")
 	public String getCpfCnpj() {
 		return cpfCnpj;
 	}

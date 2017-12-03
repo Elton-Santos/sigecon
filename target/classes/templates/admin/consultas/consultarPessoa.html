@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="/admin/layout/layoutPadrao">
 
@@ -24,14 +25,12 @@
 
 		<div class="section">
 			<div class="row">
-<!-- 				--------------------------------------- BOTÃO NOVO------------------------------------------- -->
+				<!----------------------------------------- BOTÃO NOVO--------------------------------------------->
 				<div class="col s12	 m12">
-					<a th:href="@{/condominio/pessoa/novo}" class="waves-effect black-text btn white"><i
-						class="material-icons left">add_circle</i>Novo</a>
+					<a th:href="@{/condominio/pessoa/novo}" class="waves-effect black-text btn white">
+					<i class="material-icons left">add_circle</i>Novo</a>
 				</div>
-<!-- 				---------------------------------------- FIM BOTÃO ------------------------------------------ -->
-				
-<!-- 				------------------------------------- CONSULTA PESSOA --------------------------------------- -->
+				<!--------------------------------------- CONSULTA PESSOA ----------------------------------------->
 				<div class="row">
 					<div class="col s12 m12">
 						<div class="card hoverable">
@@ -41,35 +40,38 @@
 							<div class="card-action">
 
 								<div class="row">
-									<form class="col s12" method="get" th:action="@{/condominio}" th:object="${Pessoa}">
+									<form class="col s12" method="get"
+										th:action="@{/condominio/pessoa}" th:object="${Pessoa}">
 										<div class="row">
 											<div class="input-field col m12 s12 l6">
-												<i class="material-icons prefix">account_circle</i> 
-												<input id="icon_prefix" type="text" class="validate" th:field="*{nome}" /> 
-												<label for="icon_prefix">CPF/CNPJ</label>
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix" type="text" class="validate"
+													th:field="*{nome}" /> <label for="icon_prefix">Nome/Razão
+													Social</label>
 											</div>
 											<div class="input-field col m12 s12 l6">
-												<i class="material-icons prefix">account_circle</i> 
-												<input id="icon_prefix" type="text" class="validate" th:field="*{cpfCnpj}" /> 
-												<label for="icon_prefix">Nome/Razão Social</label>
+												<i class="material-icons prefix">account_circle</i> <input
+													id="icon_prefix" type="text" class="validate"
+													th:field="*{cpfCnpj}" /> <label for="icon_prefix">CPF/CNPJ</label>
 											</div>
 										</div>
-										<button type="submit" class="waves-effect waves-dark btn blue atual_page">Pesquisar
+										<button type="submit"
+											class="waves-effect waves-dark btn blue atual_page">Pesquisar
 										</button>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-<!-- 					---------------------------------- FIM CONSULTA PESSOA --------------------------------------- -->
-				
-<!-- 					------------------------------------- LISTA DADOS PESSOAIS --------------------------------------- -->
+					<!------------------------------------ FIM CONSULTA PESSOA --------------------------------------- -->
+
+					<!--------------------------------------- LISTA DADOS PESSOAIS --------------------------------------- -->
 					<div class="col s12 m12">
 						<div class="card hoverable">
 							<ul class="collapsible" data-collapsible="accordion">
 								<li>
 									<div class="collapsible-header">
-										<i class="material-icons">person</i> Dados Pessoais 
+										<i class="material-icons">person</i> Dados Pessoais
 									</div>
 									<div class="collapsible-body">
 
@@ -81,7 +83,6 @@
 													<th>CPF/CNPJ</th>
 													<th>RG</th>
 													<th>Tipo Pessoa</th>
-													<th>Celular</th>
 													<th>Data Cadastro</th>
 
 												</tr>
@@ -93,25 +94,27 @@
 													<td th:text="${pessoa.cpfCnpj}"></td>
 													<td th:text="${pessoa.rg}"></td>
 													<td th:text="${pessoa.tipoPessoa}"></td>
-<!-- 													<td th:text="${pessoa.contato.celular}"></td> -->
 													<td th:text="${pessoa.dataCadastro}"></td>
 													<td>
 														<div>
-															<a th:href="@{/condominio/pessoa/edit/{id}(id=${pessoa.idPessoa})}"
-																class="tooltipped  waves-light modal-trigger" data-tooltip="Editar"> 
-																<i class="material-icons prefix">edit</i>
-															</a> 
-															<a class="tooltipped  waves-light modal-trigger js-remover-entidade-btn" data-position="top" 
-																href="#modal-remover-entidade" th:attr="data-id=${pessoa.idPessoa}, data-nome=${pessoa.nome}" 
-																data-delay="50" data-tooltip="Apagar"> 
-																<i class="material-icons prefix">delete</i>
+															<a
+																th:href="@{/condominio/pessoa/edit/{id}(id=${pessoa.idPessoa})}"
+																class="tooltipped  waves-light modal-trigger"
+																data-tooltip="Editar"> <i
+																class="material-icons prefix">edit</i>
+															</a> <a
+																class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+																data-position="top" href="#modal-remover-entidade"
+																th:attr="data-id=${pessoa.idPessoa}, data-nome=${pessoa.nome}"
+																data-delay="50" data-tooltip="Apagar"> <i
+																class="material-icons prefix">delete</i>
 															</a>
 
 														</div>
 													</td>
 												</tr>
 												<tr>
-<!-- 																							<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
+													<!-- 																							<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
 												</tr>
 											</tbody>
 										</table>
@@ -119,7 +122,7 @@
 								</li>
 								<li>
 									<div class="collapsible-header">
-										<i class="material-icons">contact_phone</i> Contato 
+										<i class="material-icons">contact_phone</i> Contato
 									</div>
 									<div class="collapsible-body">
 										<table class="responsive-table	striped">
@@ -146,21 +149,24 @@
 													<td th:text="${pessoa.contato.email}"></td>
 													<td>
 														<div>
-															<a th:href="@{/condominio/pessoa/edit/{id}(id=${pessoa.idPessoa})}"
-																class="tooltipped  waves-light modal-trigger" data-tooltip="Editar"> 
-																<i class="material-icons prefix">edit</i>
-															</a> 
-															<a class="tooltipped  waves-light modal-trigger js-remover-entidade-btn" data-position="top"
-															 	href="#modal-remover-entidade" th:attr="data-id=${pessoa.idPessoa}, data-nome=${pessoa.nome}" 
-																data-delay="50" data-tooltip="Apagar"> 
-																<i class="material-icons prefix">delete</i>
+															<a
+																th:href="@{/condominio/pessoa/edit/{id}(id=${pessoa.idPessoa})}"
+																class="tooltipped  waves-light modal-trigger"
+																data-tooltip="Editar"> <i
+																class="material-icons prefix">edit</i>
+															</a> <a
+																class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+																data-position="top" href="#modal-remover-entidade"
+																th:attr="data-id=${pessoa.idPessoa}, data-nome=${pessoa.nome}"
+																data-delay="50" data-tooltip="Apagar"> <i
+																class="material-icons prefix">delete</i>
 															</a>
 
 														</div>
 													</td>
 												</tr>
 												<tr>
-<!-- 																							<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
+													<!-- 																							<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
 												</tr>
 											</tbody>
 										</table>
@@ -168,20 +174,21 @@
 								</li>
 								<li>
 									<div class="collapsible-header">
-										<i class="material-icons">map</i> Endereço 
+										<i class="material-icons">map</i> Endereço
 									</div>
 									<div class="collapsible-body">
 										<table class="responsive-table	striped">
 											<thead>
 												<tr>
 													<th>ID</th>
+													<th>Nome</th>
+													<th>CPF</th>
+													<th>CEP</th>
 													<th>Logradouro</th>
 													<th>Número</th>
 													<th>Complemento</th>
-													<th>CEP</th>
 													<th>Bairro</th>
 													<th>Cidade</th>
-													<th>Estado</th>
 													<th>UF</th>
 
 												</tr>
@@ -191,34 +198,37 @@
 													<td th:text="${pessoa.endereco.idEndereco}"></td>
 													<td th:text="${pessoa.nome}"></td>
 													<td th:text="${pessoa.cpfCnpj}"></td>
+													<td th:text="${pessoa.endereco.cep}"></td>
 													<td th:text="${pessoa.endereco.logradouro}"></td>
 													<td th:text="${pessoa.endereco.numero}"></td>
 													<td th:text="${pessoa.endereco.complemento}"></td>
-													<td th:text="${pessoa.endereco.cep}"></td>
 													<td th:text="${pessoa.endereco.bairro}"></td>
 													<td th:text="${pessoa.endereco.cidade}"></td>
-													<td th:text="${pessoa.endereco.estado}"></td>
 													<td th:text="${pessoa.endereco.uf}"></td>
 													<td>
 														<div>
-															<a th:href="@{/condominio/pessoa/edit/{id}(id=${pessoa.endereco.idEndereco})}"
-																class="tooltipped  waves-light modal-trigger" data-tooltip="Editar"> <i
+															<a
+																th:href="@{/condominio/pessoa/edit/{id}(id=${pessoa.endereco.idEndereco})}"
+																class="tooltipped  waves-light modal-trigger"
+																data-tooltip="Editar"> <i
 																class="material-icons prefix">edit</i>
-															</a> <a class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+															</a> <a
+																class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
 																data-position="top" href="#modal-remover-entidade"
-																th:attr="data-id=${pessoa.idPessoa}, data-nome=${pessoa.nome}" data-delay="50"
-																data-tooltip="Apagar"> <i class="material-icons prefix">delete</i>
+																th:attr="data-id=${pessoa.idPessoa}, data-nome=${pessoa.nome}"
+																data-delay="50" data-tooltip="Apagar"> <i
+																class="material-icons prefix">delete</i>
 															</a>
 
 														</div>
 													</td>
 												</tr>
 												<tr>
-<!-- 																							<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
+													<!-- 																							<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
 												</tr>
 											</tbody>
 										</table>
-										
+
 									</div>
 								</li>
 							</ul>
@@ -228,7 +238,7 @@
 			</div>
 		</div>
 		<!------------------------------------------ FIM PESSOA ------------------------------------------------ -->
-		
+
 		<!--------------------------------------- MODAL ESTRUTURA ---------------------------------------------- -->
 		<div id="modal-remover-entidade" class="modal">
 			<div class="modal-content">
@@ -238,9 +248,11 @@
 			<div class="modal-footer">
 				<form th:attr="data-url-remover=@{/condominio/pessoa}" method="post">
 					<input type="hidden" name="_method" value="DELETE" />
-					<button type="submit" class="modal-action modal-close waves-effect waves-light btn red darken-1" 
+					<button type="submit"
+						class="modal-action modal-close waves-effect waves-light btn red darken-1"
 						style="margin: 6px">Sim</button>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+					<a href="#!"
+						class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
 				</form>
 			</div>
 		</div>

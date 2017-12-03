@@ -20,6 +20,10 @@ public class UnidadeService {
 	public List<Unidade> findAll() {
 		return repository.findAll();
 	}
+	
+	public List<Unidade> pesquisa(Unidade unidade){
+		return repository.findByCondominioOrNomeUnidadeOrProprietarioUnidade(unidade.getCondominio(), unidade.getNomeUnidade(), unidade.getProprietarioUnidade());
+	}
 
 	public Unidade findOne(Long id) {
 		return repository.findOne(id);
@@ -34,6 +38,9 @@ public class UnidadeService {
 	}
 
 	public void delete(Long codigo) {
+		Unidade unidade = this.findOne(codigo);
+		unidade.setProprietarioUnidade(null);
+		unidade.setCondominio(null);
 		repository.delete(codigo);
 	}
 
@@ -41,8 +48,5 @@ public class UnidadeService {
 		return repository.porNome(nome, pageable);
 	}
 	
-	public List<Unidade> findByCondominio(Condominio condominio){
-		return repository.findByCondominio(condominio);
-	}
 
 }

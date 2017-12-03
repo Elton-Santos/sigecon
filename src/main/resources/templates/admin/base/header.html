@@ -1,66 +1,90 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	
+	<?xml version="1.0" encoding="utf-8"?>
+<WebView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/webview" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" />
 
 <header>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo center"> <img
+					th:src="@{/vendor/images/new_logo_b.png}">
+				</a> <a href="#" data-activates="slide-out"
+					class="left button-collapse show-on-large"> <i
+					class="material-icons medium">menu</i>
+				</a> <a th:href="@{/}" class="right button-menu-right show-on-large">
+					<i class="material-icons">power_settings_new</i>
+				</a>
+			</div>
+		</nav>
+	</div>
 
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo center">
-				<img th:src="@{/vendor/images/new_logo_b.png}">
-			</a> 
-			<a href="#" data-activates="slide-out" class="left button-collapse show-on-large"> 
-				<i class="material-icons medium">menu</i>
-			</a> 
-			<a th:href="@{/}" class="right button-menu-right show-on-large">
-				<i class="material-icons">power_settings_new</i>
-			</a> 
-
-			<!-- CONTEUDO DENTRO DO MENU -->
-			<ul id="slide-out" class="side-nav #e1f5fe light-blue lighten-5">
-				<li class="bold">
-					<a th:href="@{/admin/index}" class="waves-effect waves-teal">
-					<i class="material-icons">dashboard</i>Painel de Controle</a>
-				</li>
-				<li class="no-padding">
-					<ul class="collapsible collapsible-accordion">
-						<li>
-							<a class="collapsible-header waves-effect waves-teal">
-								<i class="material-icons">person</i>Cadastros
-							</a>
-							<div class="collapsible-body">
-								<ul>
-									<li> <a th:href="@{/condominio/condominio}">Condominio	</a> </li>
-									<li> <a th:href="@{/unidade/unidade}">Unidade</a> </li>
-									<li> <a th:href="@{/condominio/pessoa}">Pessoa</a> </li>
-									<li> <a th:href="@{/visitante}">Visiante</a> </li>
-									<li> <a th:href="@{/visitante}">Veículo</a> </li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</li>
-
-				<li class="no-padding">
-					<ul class="collapsible collapsible-accordion">
-						<li>
-							<a class="collapsible-header waves-effect waves-teal">
-								<i class="material-icons">local_atm</i>Financeiro
-							</a>
-							<div class="collapsible-body">
-								<ul>
-									<li> <a href="#!">Contas a Pagar</a> </li>
-									<li> <a href="#!">Contas a Receber</a> </li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li class="bold">
-					<a th:href="@{/}" class=""><i class="material-icons left">power_settings_new</i>Sair</a>
+	<!-- CONTEUDO DENTRO DO MENU -->
+	<ul id="slide-out" class="side-nav #e1f5fe light-blue lighten-5">
+		<li class="bold"><a th:href="@{/admin/index}"
+			class="waves-effect waves-teal"> <i class="material-icons">dashboard</i>Painel
+				de Controle
+		</a></li>
+		<li class="no-padding">
+			<ul class="collapsible collapsible-accordion">
+				<li><a class="collapsible-header waves-effect waves-teal">
+						<i class="material-icons">add_box</i>Cadastros
+				</a>
+					<div class="collapsible-body">
+						<ul>
+							<li><a th:href="@{/condominio/novo}">Condominio </a></li>
+							<li><a th:href="@{/unidade/novo}">Unidade</a></li>
+							<li><a th:href="@{/condominio/pessoa}">Pessoa</a></li>
+							<li><a th:href="@{/visitante}">Visitante</a></li>
+							<li><a th:href="@{/visitante}">Veículo</a></li>
+						</ul>
+					</div>
 				</li>
 			</ul>
-		</div>
-	</nav>
+		</li>
+
+		<li class="no-padding">
+			<ul class="collapsible collapsible-accordion">
+				<li><a class="collapsible-header waves-effect waves-teal">
+						<i class="material-icons">search</i>Consultas
+				</a>
+					<div class="collapsible-body">
+						<ul>
+							<li><a th:href="@{/condominio/condominio}">Condominio </a></li>
+							<li><a th:href="@{/unidade/unidade}">Unidade</a></li>
+							<li><a th:href="@{/condominio/pessoa}">Pessoa</a></li>
+							<li><a th:href="@{/visitante}">Visitante</a></li>
+							<li><a th:href="@{/visitante}">Veículo</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</li>
+
+		<li class="no-padding">
+			<ul class="collapsible collapsible-accordion">
+				<li><a class="collapsible-header waves-effect waves-teal">
+						<i class="material-icons">local_atm</i>Financeiro
+				</a>
+					<div class="collapsible-body">
+						<ul>
+							<li><a th:href="@{/condominio/contas}">Financeiro</a></li>
+							<li><a th:href="@{/condominio/contaAPagar}">Contas a
+									Pagar</a></li>
+							<li><a th:href="@{/condominio/contaAReceber}">Contas a
+									Receber</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="bold"><a th:href="@{/}" class=""><i
+				class="material-icons left">power_settings_new</i>Sair</a></li>
+	</ul>
 
 </header>
 </html>

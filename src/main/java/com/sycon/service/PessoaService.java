@@ -39,10 +39,17 @@ public class PessoaService {
 	}
 
 	public void delete(Long codigo) {
+		Pessoa pessoa = repository.findOne(codigo);
+		pessoa.getUser().setRoles(null);
 		repository.delete(codigo);
 	}
 
 	public Page<Pessoa> porNome(String nome, Pageable pageable) {
 		return repository.porNome(nome, pageable);
 	}
+	
+	public List<Pessoa> pesquisa(String nome, String cpfCnpj){
+		return repository.findByNomeOrCpfCnpj(nome, cpfCnpj);
+	}
+	
 }

@@ -2,7 +2,6 @@ package com.sycon.model;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,21 +19,26 @@ import javax.persistence.Table;
 @Table(name = "condominio")
 public class Condominio implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idCondominio")
 	private long idCondominio;
+	
 	private String nomeCondominio;
 	private Double taxaCondominio;
 	
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idEndereco")
-	private Endereco enderecoCondominio;
+	private Endereco endereco;
 	
+	private String cnpj;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "condominio")
 	private List<Unidade> unidades;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "condominioConta")
+	private List<Conta> contas;
 
 	public Condominio() {
 	}
@@ -45,9 +49,24 @@ public class Condominio implements Serializable {
 		this.nomeCondominio = nomeCondominio;
 		this.taxaCondominio = taxaCondominio;
 		this.unidades = unidades;
-		this.enderecoCondominio = enderecoCondominio;
+		this.endereco = enderecoCondominio;
 	}
 
+	public String getCnpj() {
+		return cnpj;
+	}
+	
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 
 	public long getIdCondominio() {
 		return idCondominio;
@@ -74,12 +93,12 @@ public class Condominio implements Serializable {
 	}
 
 
-	public Endereco getEnderecoCondominio() {
-		return enderecoCondominio;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecoCondominio(Endereco endereco) {
-		this.enderecoCondominio = endereco;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public Double getTaxaCondominio() {

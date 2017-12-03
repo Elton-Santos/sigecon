@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sycon.model.Condominio;
+import com.sycon.model.Pessoa;
 import com.sycon.model.Unidade;
 import com.sycon.repository.CondominioRepository;
 
@@ -47,6 +48,10 @@ public class CondominioService {
 
 	public Page<Condominio> porNome(String nome, Pageable pageable) {
 		return repository.porNome(nome, pageable);
+	}
+	
+	public List<Condominio> pesquisa(String cnpj, String nomeCondominio){
+		return repository.findByCnpjOrNomeCondominio(cnpj, nomeCondominio);
 	}
 
 }

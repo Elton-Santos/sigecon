@@ -25,4 +25,21 @@ body {
 		font-size: 85%;
 	}
 }
+
+.botao{
+	font-weight: bold;
+	padding: 10px;
+	float: left;
+	border-radius: 0px 10px 0px 10px;
+	background-color: red;
+	margin-left: 10px;
+	color:white;
+	font-size: 70%;
+}
+
+.botao:hover{
+	color: blue;
+	background-color: blue;
+	border-radius: 10px 0px 10px 0px;
+}
 /* Fim Fontes responsivas */

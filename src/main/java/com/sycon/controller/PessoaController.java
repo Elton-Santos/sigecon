@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,6 +41,19 @@ public class PessoaController {
 		return view;
 	}
 
+	@RequestMapping(value = "/pessoa", params = { "nome", "cpfCnpj" })
+	public ModelAndView pesquisar(@RequestParam(value = "nome") String nome,
+			@RequestParam(value = "cpfCnpj") String cpfCnpj) {
+		ModelAndView view = new ModelAndView(INDEX);
+		view.addObject("Pessoa", new Pessoa());
+		// Se os valores dos campos forem brancos, lista todos os registros
+		if (nome.isEmpty() && cpfCnpj.isEmpty())
+			return findAll();
+		else
+			view.addObject("listaPessoas", service.pesquisa(nome, cpfCnpj));
+		return view;
+	}
+
 	@RequestMapping("pessoa/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Pessoa pessoa) {
 		ModelAndView view = new ModelAndView(CADASTRO);
@@ -54,33 +67,23 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value = "pessoa/novo", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute @Valid Pessoa pessoa, BindingResult result,
-			RedirectAttributes attributes) {
+	public ModelAndView save(@Valid Pessoa pessoa, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			return save(pessoa);
 		}
 
-		service.save(pessoa);
 		attributes.addFlashAttribute("mensagem", "Entidade salva com sucesso.");
+		service.save(pessoa);
 		return new ModelAndView("redirect:/condominio/pessoa");
 	}
 
-	@RequestMapping
-	public ModelAndView pesquisar(Pessoa pessoa, @PageableDefault(size = 6) Pageable pageable,
-			HttpServletRequest httpServletRequest) {
-
-		ModelAndView view = new ModelAndView(INDEX);
-		PageWrapper<Pessoa> paginaWrapper = new PageWrapper<>(repository.porNome(pessoa.getNome(), pageable),
-				httpServletRequest);
-
-		view.addObject("pagina", paginaWrapper);
-		return view;
-	}
-
 	@RequestMapping(value = "/pessoa/{id}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable("id") Long id) {
+	public ModelAndView excluir(@PathVariable("id") Long id) {
 		service.delete(id);
-		return "redirect:/condominio/pessoa";
+		ModelAndView view = new ModelAndView(INDEX);
+		view.addObject("Pessoa", new Pessoa());
+		view.addObject("listaPessoas", service.findAll());
+		return view;
 	}
 }

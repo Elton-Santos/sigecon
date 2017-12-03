@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/layout/layoutPadrao">
+
+<head>
+
+<title
+	th:text="${codigo == null ? 'Cadastro de Contas à Pagar' : 'Consulta de Conta'}">Título</title>
+</head>
+
+<section layout:fragment="conteudo" >
+	<div class="row">
+		<div class="row">
+			<div class="col s12	 m12">
+				<h5>Resumo das Contas</h5>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12	 m12">
+			<div class="breadcrumb-barra">
+				<a th:href="@{/admin/index}" class="breadcrumb">Painel de Controle</a>
+				<a th:href="@{/condominio/contas}" class="breadcrumb">Financeiro</a> 
+				<a th:href="@{/condominio/contaAPagar}" class="breadcrumb">Resumo das Contas</a>
+				<a th:href="@{/condominio/contaAPagar}" class="breadcrumb">Consultar</a>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="row">
+			<!--------------------------------------- BOTÃO NOVO----------------------------------------->
+			<div class="col s12	 m12">
+				<a th:href="@{/condominio/conta/novo}"
+					class="waves-effect black-text btn white"> <i
+					class="material-icons left">add_circle</i>Novo
+				</a>
+			</div>
+			<div class="col s12 m12">
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title card-span">Consultar Contas</span>
+					</div>
+					<div class="card-action">
+
+						<div class="row">
+							<form class="col s12" method="get"
+								th:action="@{/condominio/conta}" th:object="${Conta}"
+								onsubmit="preencheInputsConta();">
+								<div class="row">
+									<div class="input-field col m12 s8 l6">
+										<i class="material-icons prefix">account_circle</i> <input
+											id="icon_prefix" type="text" class="validate"
+											th:field="*{descricaoConta}" /> <label for="icon_prefix">Descrição
+											da Conta</label>
+									</div>
+									<div class="input-field col m12 s8 l4">
+										<select class="form-control" th:field="*{condominioConta}">
+											<option value="0">Lista de Condomínios</option>
+											<option th:each="condominioContaLista : ${condominioContas}"
+												th:value="${condominioContaLista.idCondominio}"
+												th:text="${condominioContaLista.nomeCondominio}"></option>
+										</select>
+									</div>
+									<div class="input-field col m12 s8 l4">
+										<select name="ano" id="ano">
+											<option value="0">Escolha o Ano</option>
+											<option value="2017">2017</option>
+											<option value="2016">2016</option>
+											<option value="2015">2015</option>
+											<option value="2014">2014</option>
+											<option value="2013">2013</option>
+											<option value="2012">2012</option>
+										</select>
+									</div>
+									<div class="input-field col m12 s8 l4">
+										<select name="mes" id="mes">
+
+											<option value="12">Escolha o Mês</option>
+											<option value="0">Janeiro</option>
+											<option value="1">Fevereiro</option>
+											<option value="2">Março</option>
+											<option value="3">Abril</option>
+											<option value="4">Maio</option>
+											<option value="5">Junho</option>
+											<option value="6">Julho</option>
+											<option value="7">Agosto</option>
+											<option value="8">Setembro</option>
+											<option value="9">Outubro</option>
+											<option value="10">Novembro</option>
+											<option value="11">Dezembro</option>
+
+										</select>
+									</div>
+
+								</div>
+								<button type="submit"
+									class="waves-effect waves-dark btn blue atual_page">Pesquisar</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+				<!-------------------------------------------- LISTA CONTA ---------------------------------------->
+				<div class="card hoverable">
+					<div class="card-content black-text">
+						<span class="card-title card-span">Lista de Contas</span>
+					</div>
+					<div class="card-action">
+
+						<table class="responsive-table	striped">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Descrição da Conta</th>
+									<th>Total de Receitas</th>
+									<th>Total de Despesas</th>
+									<th>
+										<form class="col s12" method="get"
+											th:action="@{/condominio/conta/gerarRateio}"
+											th:object="${Conta}">
+											<input type="hidden" th:field="*{descricaoConta}" /> <input
+												type="hidden" th:field="*{condominioConta}" /> 
+												<input type="hidden" id="meshidden" name = "meshidden" value =""/> 
+												<input type="hidden" id="anohidden" name ="anohidden" value =""/>
+											<button type="submit"
+												class="waves-effect waves-dark btn blue atual_page">Gerar
+												Rateio</button>
+										</form>
+									</th>
+								</tr>
+
+							</thead>
+
+							<tbody>
+								<tr th:each="contas : ${listaContas}">
+									<td th:text="${contas.idConta}"></td>
+									<td th:text="${contas.descricaoConta}"></td>
+									<td th:text="${contas.totalReceitas}"></td>
+									<td th:text="${contas.totalDespesas}"></td>
+									<td>
+										<div>
+											<a
+												th:href="@{/condominio/conta/edit/{id}(id=${contas.idConta})}"
+												class="tooltipped  waves-light modal-trigger"
+												data-tooltip="Editar"> <i class="material-icons prefix">edit</i>
+											</a> <a
+												class="tooltipped  waves-light modal-trigger js-remover-entidade-btn"
+												data-position="top" href="#modal-remover-entidade"
+												th:attr="data-id=${contas.idConta}, data-nome=${contas.descricaoConta}"
+												data-delay="50" data-tooltip="Apagar"> <i
+												class="material-icons prefix">delete</i>
+											</a> <a href="!#" data-tooltip="Relatório"
+												class="tooltipped  waves-light modal-trigger"><i
+												class="material-icons prefix">content_paste</i></a>
+										</div>
+									</td>
+
+									<!-- 									<td colspan="9" th:if="${pagina.vazia}">Nenhuma entidade encontrada!</td> -->
+							</tbody>
+						</table>
+					</div>
+					<!-- 					<div th:replace="/admin/paginacao :: paginacao (${pagina})"></div> -->
+				</div>
+			</div>
+			<!---------------------------------------- MODAL ESTRUTURA ------------------------------------>
+			<div id="modal-remover-entidade" class="modal">
+				<div class="modal-content">
+					<h4>Exclusão de Conta</h4>
+					<span>Tem certeza que deseja remover esta conta?</span>
+				</div>
+				<div class="modal-footer">
+					<form th:attr="data-url-remover=@{/condominio}" method="post">
+						<input type="hidden" name="_method" value="DELETE" />
+						<button type="submit"
+							class="modal-action modal-close waves-effect waves-light btn red darken-1"
+							style="margin: 6px">Sim</button>
+						<a href="#!"
+							class="modal-action modal-close waves-effect waves-light btn teal darken-3">Não</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</html>
